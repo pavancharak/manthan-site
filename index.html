@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manthan — Deterministic Decision Infrastructure</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text: #0a0a0a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg-soft: #fafafa;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 100px 20px;
+    }
+
+    section {
+      margin-bottom: 140px;
+    }
+
+    /* LABEL */
+    .label {
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* HERO */
+    h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin: 0 0 20px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #000, #555);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .btn:hover {
+      background: var(--bg-soft);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .card p {
+      font-size: 15px;
+    }
+
+    /* PIPELINE */
+    .pipeline {
+      margin-top: 30px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .step {
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    /* CODE */
+    pre {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="logo">Manthan</div>
+      <div class="nav-links">
+        <a href="#pipeline">Pipeline</a>
+        <a href="/docs">Docs</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <section>
+      <h1 class="gradient">Deterministic<br/>decision infrastructure.</h1>
+      <p>
+        Same input. Same output. Always.
+        No AI in evaluation. No hidden defaults.
+      </p>
+
+      <div class="buttons">
+        <a href="#pipeline" class="btn">How it works</a>
+        <a href="/docs" class="btn">Docs</a>
+      </div>
+    </section>
+
+    <!-- GUARANTEES -->
+    <section>
+      <div class="label">GUARANTEES</div>
+      <h2>Deterministic. Controlled. Verifiable.</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Deterministic</h3>
+          <p>No variance. No drift.</p>
+        </div>
+
+        <div class="card">
+          <h3>No AI</h3>
+          <p>Evaluation is controlled.</p>
+        </div>
+
+        <div class="card">
+          <h3>No mutation</h3>
+          <p>Everything explicit and versioned.</p>
+        </div>
+
+        <div class="card">
+          <h3>Fail-closed</h3>
+          <p>Uncertainty blocks execution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section id="pipeline">
+      <div class="label">PIPELINE</div>
+      <h2>Evaluation flow</h2>
+
+      <div class="pipeline">
+        <div class="step"><strong>Validation</strong> → INVALID</div>
+        <div class="step"><strong>Completeness</strong> → INCOMPLETE</div>
+        <div class="step"><strong>Evaluation</strong> → ALLOW / BLOCK / ESCALATE</div>
+        <div class="step"><strong>Explanation</strong> → TRACE</div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section>
+      <div class="label">ARCHITECTURE</div>
+      <h2>Layered system</h2>
+
+      <div class="grid">
+        <div class="card"><h3>Definition</h3><p>Schema + rules</p></div>
+        <div class="card"><h3>Signal</h3><p>External inputs</p></div>
+        <div class="card"><h3>Core</h3><p>Pure evaluation</p></div>
+        <div class="card"><h3>Token</h3><p>Signed proof</p></div>
+        <div class="card"><h3>Gateway</h3><p>Execution control</p></div>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section>
+      <div class="label">EXAMPLE</div>
+      <h2>Determinism in practice</h2>
+
+      <p>Identical input and rule version produce identical output.</p>
+
+      <pre>
+input → rules v1 → output A
+input → rules v1 → output A
+      </pre>
+    </section>
+
+  </div>
+
+  <footer>
+    Manthan — deterministic decision infrastructure
+  </footer>
+
+</body>
+</html>

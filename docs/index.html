@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manthan Docs — Deterministic Decision Infrastructure</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text: #0a0a0a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg-soft: #fafafa;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fff;
+      display: flex;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 240px;
+      border-right: 1px solid var(--border);
+      padding: 30px 20px;
+      position: fixed;
+      height: 100vh;
+      background: #fff;
+    }
+
+    .sidebar h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .sidebar a:hover {
+      color: var(--text);
+    }
+
+    /* CONTENT */
+    .content {
+      margin-left: 260px;
+      padding: 60px 40px;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 60px;
+      font-size: 22px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    pre {
+      background: var(--bg-soft);
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+
+    .block {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>Manthan</h3>
+    <a href="#overview">Overview</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#schema">Schema</a>
+    <a href="#rules">Rules</a>
+    <a href="#token">Token</a>
+    <a href="#constraints">Constraints</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <h1 id="overview">Overview</h1>
+    <p>
+      Manthan is a deterministic decision infrastructure.
+      Identical input produces identical output. Always.
+    </p>
+
+    <div class="block">
+      <h2 id="pipeline">Pipeline</h2>
+      <p>Evaluation is executed in strict order:</p>
+
+      <pre>
+1. Validation     → INVALID
+2. Completeness   → INCOMPLETE
+3. Evaluation     → ALLOW / BLOCK / ESCALATE
+4. Explanation    → TRACE
+      </pre>
+    </div>
+
+    <div class="block">
+      <h2 id="architecture">Architecture</h2>
+
+      <pre>
+Definition → Schema + Rules
+Signal     → External deterministic inputs
+Core       → Pure evaluation
+Token      → Signed proof
+Gateway    → Execution control
+      </pre>
+    </div>
+
+    <div class="block">
+      <h2 id="schema">Schema</h2>
+
+      <p>Defines valid input structure. Strict and versioned.</p>
+
+      <pre>
+{
+  "type": "object",
+  "required": ["amount", "role"],
+  "properties": {
+    "amount": { "type": "number" },
+    "role": { "enum": ["admin", "user"] }
+  }
+}
+      </pre>
+    </div>
+
+    <div class="block">
+      <h2 id="rules">Rules</h2>
+
+      <p>Deterministic evaluation logic.</p>
+
+      <pre>
+{
+  "rule_id": "allow-standard",
+  "if": [
+    { "field": "amount", "op": "<=", "value": 1000 },
+    { "field": "role", "op": "==", "value": "admin" }
+  ],
+  "then": "ALLOW"
+}
+      </pre>
+    </div>
+
+    <div class="block">
+      <h2 id="token">Decision Token</h2>
+
+      <pre>
+{
+  "event_id": "evt_...",
+  "outcome": "ALLOW",
+  "rule_version": "v1",
+  "schema_version": "v1",
+  "matched_rule": "allow-standard",
+  "proof_hash": "sha256:...",
+  "signature": "ed25519:..."
+}
+      </pre>
+    </div>
+
+    <div class="block">
+      <h2 id="constraints">Hard Constraints</h2>
+
+      <pre>
+- No hidden defaults
+- No runtime mutation
+- No AI in evaluation
+- No bypass of pipeline
+- No retroactive change
+      </pre>
+    </div>
+
+  </div>
+
+</body>
+</html>
