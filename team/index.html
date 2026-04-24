@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team — Manthan</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text: #0a0a0a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg-soft: #fafafa;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text);
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo a {
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* CONTENT */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 100px 20px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .card {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .role {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .link {
+      margin-top: 10px;
+      display: inline-block;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <a href="../index.html">Manthan</a>
+      </div>
+      <div class="nav-links">
+        <a href="../index.html#pipeline">Pipeline</a>
+        <a href="../docs/index.html">Docs</a>
+        <a href="../team/index.html">Team</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <h1>Team</h1>
+
+    <p>
+      Systems that control decisions must have clear ownership.
+      Manthan is built with that responsibility in mind.
+    </p>
+
+    <div class="grid">
+
+      <!-- Founder -->
+      <div class="card">
+        <h3>Pavan Charak</h3>
+        <div class="role">Founder — Manthan</div>
+        <a class="link" href="https://www.linkedin.com/in/pavancharak/" target="_blank">
+          LinkedIn →
+        </a>
+      </div>
+
+      <!-- Advisor -->
+      <div class="card">
+        <h3>Mohinder Singh Charak</h3>
+        <div class="role">Advisor — governance & oversight</div>
+        <a class="link" href="https://www.linkedin.com/in/mohinder-singh-charak-b246bb346/" target="_blank">
+          LinkedIn →
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

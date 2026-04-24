@@ -20,28 +20,31 @@
       font-family: 'Inter', sans-serif;
       background: #fff;
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
     }
 
+    /* NAV */
     .nav {
       position: sticky;
       top: 0;
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      z-index: 100;
     }
 
     .nav-inner {
       max-width: 1000px;
       margin: auto;
-      padding: 16px 20px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo {
+    .logo a {
       font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
     }
 
     .nav-links a {
@@ -55,6 +58,7 @@
       color: var(--text);
     }
 
+    /* LAYOUT */
     .container {
       max-width: 1000px;
       margin: auto;
@@ -76,7 +80,7 @@
       font-size: 64px;
       line-height: 1.1;
       letter-spacing: -2px;
-      margin: 0 0 20px;
+      margin-bottom: 20px;
     }
 
     .gradient {
@@ -150,8 +154,8 @@
       background: #fafafa;
       border: 1px solid var(--border);
       border-radius: 6px;
-      font-size: 13px;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
     }
 
     footer {
@@ -169,10 +173,13 @@
   <!-- NAV -->
   <div class="nav">
     <div class="nav-inner">
-      <div class="logo">Manthan</div>
+      <div class="logo">
+        <a href="./index.html">Manthan</a>
+      </div>
       <div class="nav-links">
         <a href="#pipeline">Pipeline</a>
         <a href="./docs/index.html">Docs</a>
+        <a href="./team/index.html">Team</a>
       </div>
     </div>
   </div>
@@ -182,6 +189,7 @@
     <!-- HERO -->
     <section>
       <h1 class="gradient">Deterministic<br/>decision infrastructure.</h1>
+
       <p>
         Same input. Same output. Always.
         No AI in evaluation. No hidden defaults.
@@ -194,6 +202,7 @@
       <div class="buttons">
         <a href="#pipeline" class="btn">How it works</a>
         <a href="./docs/index.html" class="btn">Docs</a>
+        <a href="./founder/index.html" class="btn">Founder</a>
       </div>
     </section>
 
@@ -216,14 +225,14 @@
       <h2>Decisions from any source. Evaluated the same way.</h2>
 
       <p>
-        Human input, system output, or AI suggestion all are treated as input.
+        Human input, system output, or AI suggestion — all are treated as input.
         Evaluation remains deterministic, versioned, and fail-closed.
       </p>
 
       <div class="grid">
-        <div class="card"><h3>Human input</h3><p>Operator actions validated and evaluated.</p></div>
-        <div class="card"><h3>System output</h3><p>Automated processes pass through evaluation.</p></div>
-        <div class="card"><h3>AI suggestion</h3><p>AI may propose. It never decides.</p></div>
+        <div class="card"><h3>Human input</h3><p>Validated and evaluated.</p></div>
+        <div class="card"><h3>System output</h3><p>Deterministic evaluation layer.</p></div>
+        <div class="card"><h3>AI suggestion</h3><p>May propose. Never decides.</p></div>
       </div>
     </section>
 
@@ -240,32 +249,13 @@
       </div>
     </section>
 
-    <!-- ARCHITECTURE -->
-    <section>
-      <div class="label">ARCHITECTURE</div>
-      <h2>Layered system</h2>
-
-      <div class="grid">
-        <div class="card"><h3>Definition</h3><p>Schema + rules</p></div>
-        <div class="card"><h3>Signal</h3><p>External inputs</p></div>
-        <div class="card"><h3>Core</h3><p>Pure evaluation</p></div>
-        <div class="card"><h3>Token</h3><p>Signed proof</p></div>
-        <div class="card"><h3>Gateway</h3><p>Execution control</p></div>
-      </div>
-    </section>
-
     <!-- ENVIRONMENTS -->
     <section>
       <div class="label">ENVIRONMENTS</div>
-      <h2>Built for regulated, high-precision systems</h2>
-
-      <p>
-        Where decisions must be explainable, reproducible, and defensible
-        Manthan provides a deterministic control layer.
-      </p>
+      <h2>Built for regulated systems</h2>
 
       <div class="grid">
-        <div class="card"><h3>Financial systems</h3><p>Approvals, fraud, compliance</p></div>
+        <div class="card"><h3>Financial</h3><p>Compliance, fraud, approvals</p></div>
         <div class="card"><h3>Healthcare</h3><p>Eligibility, treatment, audit</p></div>
         <div class="card"><h3>Access control</h3><p>Permissions, zero-trust</p></div>
         <div class="card"><h3>AI governance</h3><p>Agent action gating</p></div>
@@ -276,8 +266,6 @@
     <section>
       <div class="label">EXAMPLE</div>
       <h2>Determinism in practice</h2>
-
-      <p>Identical input and rule version produce identical output.</p>
 
       <pre>
 input → rules v1 → output A
