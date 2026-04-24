@@ -8,9 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --text: #0a0a0a;
@@ -87,6 +85,11 @@
       margin-bottom: 20px;
     }
 
+    h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
     .gradient {
       background: linear-gradient(90deg, #000, #555);
       -webkit-background-clip: text;
@@ -96,7 +99,8 @@
     p {
       font-size: 18px;
       color: var(--muted);
-      max-width: 600px;
+      max-width: 620px;
+      line-height: 1.6;
     }
 
     .buttons {
@@ -127,8 +131,8 @@
     }
 
     .card {
-      padding: 20px 0;
       border-top: 1px solid var(--border);
+      padding-top: 20px;
     }
 
     .pipeline {
@@ -142,15 +146,30 @@
       border-top: 1px solid var(--border);
     }
 
-    pre {
-      margin-top: 20px;
-      padding: 16px;
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      white-space: pre-wrap;
+    /* COMPARE */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .column {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .column-label {
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      background: var(--bg-soft);
+      padding: 20px;
+      border-radius: 8px;
     }
 
     footer {
@@ -160,8 +179,7 @@
       color: var(--muted);
     }
 
-    /* ================= MOBILE ================= */
-
+    /* MOBILE */
     @media (max-width: 768px) {
 
       .nav-inner {
@@ -184,17 +202,12 @@
         padding: 60px 16px;
       }
 
-      h1 {
-        font-size: 36px;
-      }
+      h1 { font-size: 36px; }
+      h2 { font-size: 22px; }
+      p { font-size: 16px; }
 
-      p {
-        font-size: 16px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
+      .compare { grid-template-columns: 1fr; }
 
       .buttons {
         display: flex;
@@ -207,49 +220,121 @@
         text-align: center;
       }
     }
-
   </style>
 </head>
 
 <body>
 
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="logo"><a href="./index.html">Manthan</a></div>
-      <div class="nav-links">
-        <a href="#pipeline">Pipeline</a>
-        <a href="./docs/index.html">Docs</a>
-        <a href="./team/index.html">Team</a>
-      </div>
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo"><a href="./index.html">Manthan</a></div>
+    <div class="nav-links">
+      <a href="#pipeline">Pipeline</a>
+      <a href="./docs/index.html">Docs</a>
+      <a href="./applications/index.html">Applications</a>
+      <a href="./team/index.html">Team</a>
     </div>
   </div>
+</div>
 
-  <div class="container">
+<div class="container">
 
-    <section>
-      <h1 class="gradient">Deterministic<br/>decision infrastructure.</h1>
-      <p>Same input. Same output. Always.</p>
+  <!-- HERO -->
+  <section>
+    <h1 class="gradient">Deterministic decision infrastructure.</h1>
 
-      <div class="buttons">
-        <a href="#pipeline" class="btn">How it works</a>
-        <a href="./docs/index.html" class="btn">Docs</a>
-        <a href="./team/index.html" class="btn">Team</a>
+    <p>
+      Same input. Same output. Always.
+      No AI in evaluation. No hidden defaults.
+    </p>
+
+    <p style="margin-top:10px; font-weight:500;">
+      AI may suggest. Manthan decides.
+    </p>
+
+    <div class="buttons">
+      <a href="#pipeline" class="btn">How it works</a>
+      <a href="./docs/index.html" class="btn">Docs</a>
+      <a href="./applications/index.html" class="btn">Applications</a>
+      <a href="./team/index.html" class="btn">Team</a>
+    </div>
+  </section>
+
+  <!-- GUARANTEES -->
+  <section>
+    <div class="label">GUARANTEES</div>
+    <h2>Deterministic. Controlled. Verifiable.</h2>
+
+    <div class="grid">
+      <div class="card"><h3>Deterministic</h3><p>No variance. No drift.</p></div>
+      <div class="card"><h3>No AI</h3><p>Evaluation is controlled.</p></div>
+      <div class="card"><h3>No mutation</h3><p>No hidden state.</p></div>
+      <div class="card"><h3>Fail-closed</h3><p>Uncertainty blocks execution.</p></div>
+    </div>
+  </section>
+
+  <!-- CONTROL -->
+  <section>
+    <div class="label">CONTROL SURFACE</div>
+    <h2>All decisions enter. One system evaluates.</h2>
+
+    <p>
+      Human input, system output, or AI suggestion
+      all are treated as input. Evaluation remains deterministic.
+    </p>
+
+    <div class="grid">
+      <div class="card"><h3>Human</h3><p>Validated decisions</p></div>
+      <div class="card"><h3>System</h3><p>Deterministic automation</p></div>
+      <div class="card"><h3>AI</h3><p>Suggests, never decides</p></div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section id="pipeline">
+    <div class="label">PIPELINE</div>
+    <h2>Evaluation flow</h2>
+
+    <div class="pipeline">
+      <div class="step">Validation → INVALID</div>
+      <div class="step">Completeness → INCOMPLETE</div>
+      <div class="step">Evaluation → ALLOW / BLOCK / ESCALATE</div>
+      <div class="step">Explanation → TRACE</div>
+    </div>
+  </section>
+
+  <!-- REGULATED -->
+  <section>
+    <div class="label">REGULATED SYSTEMS</div>
+    <h2>Why deterministic decisions are required</h2>
+
+    <div class="compare">
+
+      <div class="column">
+        <div class="column-label">TODAY</div>
+        <p>Non-reproducible decisions</p>
+        <p>Hidden logic</p>
+        <p>Unverifiable outcomes</p>
+        <p>AI unpredictability</p>
       </div>
-    </section>
 
-    <section id="pipeline">
-      <div class="label">PIPELINE</div>
-      <div class="pipeline">
-        <div class="step">Validation → INVALID</div>
-        <div class="step">Completeness → INCOMPLETE</div>
-        <div class="step">Evaluation → ALLOW / BLOCK</div>
-        <div class="step">Explanation → TRACE</div>
+      <div class="column highlight">
+        <div class="column-label">WITH MANTHAN</div>
+        <p>Reproducible outcomes</p>
+        <p>Explicit logic</p>
+        <p>Verifiable decisions</p>
+        <p>Controlled AI</p>
       </div>
-    </section>
 
-  </div>
+    </div>
+  </section>
 
-  <footer>Manthan — deterministic decision infrastructure</footer>
+</div>
+
+<footer>
+  Manthan — deterministic decision infrastructure
+</footer>
 
 </body>
 </html>

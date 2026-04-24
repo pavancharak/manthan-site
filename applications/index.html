@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Applications — Manthan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --bg-soft: #fafafa;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+
+/* NAV (SYNCED) */
+.nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 20px;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+p {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 15px;
+}
+
+.card a {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+  }
+
+  .container {
+    padding: 60px 16px;
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 22px; }
+  p { font-size: 16px; }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="../index.html">Manthan</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Pipeline</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../applications/index.html">Applications</a>
+      <a href="../team/index.html">Team</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section>
+    <h1>Application Areas</h1>
+
+    <p>
+      Deterministic decision infrastructure is required wherever
+      decisions must be reproducible, explainable, and auditable.
+    </p>
+  </section>
+
+  <!-- CONTEXT -->
+  <section>
+    <div class="label">WHERE IT MATTERS</div>
+
+    <h2>Systems that cannot tolerate ambiguity</h2>
+
+    <p>
+      These environments operate under strict regulation,
+      high precision requirements, and accountability constraints
+      where inconsistent or opaque decisions introduce risk.
+    </p>
+  </section>
+
+  <!-- APPLICATION GRID -->
+  <section>
+
+    <div class="grid">
+
+      <div class="card">
+        <a href="./financial.html">
+          <h3>Financial Systems</h3>
+          <p>Approvals, fraud detection, compliance enforcement.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="./healthcare.html">
+          <h3>Healthcare</h3>
+          <p>Eligibility decisions, treatment pathways, audit trails.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="./access-control.html">
+          <h3>Access Control</h3>
+          <p>Permissions, identity validation, zero-trust systems.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="./ai-governance.html">
+          <h3>AI Governance</h3>
+          <p>Agent actions, policy enforcement, safe execution.</p>
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+</body>
+</html>

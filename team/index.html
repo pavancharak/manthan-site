@@ -8,9 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --text: #0a0a0a;
@@ -25,7 +23,7 @@
       color: var(--text);
     }
 
-    /* NAV */
+    /* NAV (SYNCED) */
     .nav {
       position: sticky;
       top: 0;
@@ -61,7 +59,7 @@
       color: var(--text);
     }
 
-    /* CONTENT */
+    /* LAYOUT */
     .container {
       max-width: 900px;
       margin: auto;
@@ -114,8 +112,7 @@
       text-decoration: underline;
     }
 
-    /* ================= MOBILE ================= */
-
+    /* MOBILE */
     @media (max-width: 768px) {
 
       .nav-inner {
@@ -138,71 +135,66 @@
         padding: 60px 16px;
       }
 
-      h1 {
-        font-size: 30px;
-      }
-
-      p {
-        font-size: 16px;
-      }
+      h1 { font-size: 30px; }
+      p { font-size: 16px; }
 
       .grid {
         grid-template-columns: 1fr;
         gap: 24px;
       }
-
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="logo">
-        <a href="../index.html">Manthan</a>
-      </div>
-      <div class="nav-links">
-        <a href="../index.html#pipeline">Pipeline</a>
-        <a href="../docs/index.html">Docs</a>
-        <a href="../team/index.html">Team</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container">
-
-    <h1>Team</h1>
-
-    <p>
-      Systems that control decisions must have clear ownership.
-      Manthan is built with that responsibility in mind.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>Pavan Dev Singh Charak</h3>
-        <div class="role">Founder and Builder — Manthan</div>
-        <a class="link" href="https://www.linkedin.com/in/pavancharak/" target="_blank">
-          LinkedIn →
-        </a>
-      </div>
-
-      <div class="card">
-        <h3>Mohinder Singh Charak</h3>
-        <div class="role">Advisor — Governance & Oversight</div>
-        <a class="link" href="https://www.linkedin.com/in/mohinder-singh-charak-b246bb346/" target="_blank">
-          LinkedIn →
-        </a>
-      </div>
-
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="../index.html">Manthan</a>
     </div>
 
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Pipeline</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../applications/index.html">Applications</a>
+      <a href="../team/index.html">Team</a>
+    </div>
   </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <h1>Team</h1>
+
+  <p>
+    Systems that control decisions must have clear ownership.
+    Manthan is built with that responsibility in mind.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Pavan Charak</h3>
+      <div class="role">Founder and BuilderS — Manthan</div>
+      <a class="link" href="https://www.linkedin.com/in/pavancharak/" target="_blank">
+        LinkedIn →
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>Mohinder Singh Charak</h3>
+      <div class="role">Director and Advisor — Governance & Oversight</div>
+      <a class="link" href="https://www.linkedin.com/in/mohinder-singh-charak-b246bb346/" target="_blank">
+        LinkedIn →
+      </a>
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 </html>

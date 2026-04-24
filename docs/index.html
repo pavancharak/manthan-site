@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manthan Docs</title>
+  <title>Docs — Manthan</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --text: #0a0a0a;
@@ -26,7 +24,7 @@
       background: #fff;
     }
 
-    /* NAV */
+    /* NAV (SYNCED) */
     .nav {
       position: sticky;
       top: 0;
@@ -102,7 +100,7 @@
     }
 
     h1 {
-      font-size: 34px;
+      font-size: 32px;
       margin-bottom: 20px;
     }
 
@@ -124,7 +122,6 @@
       border: 1px solid var(--border);
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
-      overflow-x: auto;
       white-space: pre-wrap;
     }
 
@@ -134,8 +131,7 @@
       margin-top: 20px;
     }
 
-    /* ================= MOBILE ================= */
-
+    /* MOBILE */
     @media (max-width: 768px) {
 
       .nav-inner {
@@ -172,86 +168,86 @@
         padding: 30px 16px;
       }
 
-      h1 {
-        font-size: 26px;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
+      h1 { font-size: 26px; }
+      h2 { font-size: 20px; }
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="logo">
-        <a href="../index.html">Manthan</a>
-      </div>
-      <div class="nav-links">
-        <a href="../index.html#pipeline">Pipeline</a>
-        <a href="../docs/index.html">Docs</a>
-        <a href="../team/index.html">Team</a>
-      </div>
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="../index.html">Manthan</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Pipeline</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../applications/index.html">Applications</a>
+      <a href="../team/index.html">Team</a>
     </div>
   </div>
+</div>
 
-  <div class="layout">
+<div class="layout">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-      <h3>Docs</h3>
-      <a href="#overview">Overview</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#schema">Schema</a>
-      <a href="#rules">Rules</a>
-      <a href="#token">Token</a>
-      <a href="#constraints">Constraints</a>
-    </div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>Docs</h3>
+    <a href="#overview">Overview</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#schema">Schema</a>
+    <a href="#rules">Rules</a>
+    <a href="#token">Token</a>
+    <a href="#constraints">Constraints</a>
+  </div>
 
-    <!-- CONTENT -->
-    <div class="content">
+  <!-- CONTENT -->
+  <div class="content">
 
-      <h1 id="overview">Overview</h1>
-      <p>Manthan is a deterministic decision infrastructure.</p>
+    <h1 id="overview">Overview</h1>
+    <p>
+      Manthan is a deterministic decision infrastructure.
+      Identical input produces identical output. Always.
+    </p>
 
-      <div class="block">
-        <h2 id="pipeline">Pipeline</h2>
-        <pre>
+    <div class="block">
+      <h2 id="pipeline">Pipeline</h2>
+      <pre>
 1. Validation     → INVALID
 2. Completeness   → INCOMPLETE
-3. Evaluation     → ALLOW / BLOCK
+3. Evaluation     → ALLOW / BLOCK / ESCALATE
 4. Explanation    → TRACE
-        </pre>
-      </div>
+      </pre>
+    </div>
 
-      <div class="block">
-        <h2 id="architecture">Architecture</h2>
-        <pre>
+    <div class="block">
+      <h2 id="architecture">Architecture</h2>
+      <pre>
 Definition → Schema + Rules
-Signal     → External inputs
+Signal     → External deterministic inputs
 Core       → Pure evaluation
 Token      → Signed proof
 Gateway    → Execution control
-        </pre>
-      </div>
+      </pre>
+    </div>
 
-      <div class="block">
-        <h2 id="constraints">Constraints</h2>
-        <pre>
+    <div class="block">
+      <h2 id="constraints">Constraints</h2>
+      <pre>
 - No hidden defaults
 - No runtime mutation
 - No AI in evaluation
-        </pre>
-      </div>
-
+- No bypass of pipeline
+      </pre>
     </div>
+
   </div>
+</div>
 
 </body>
 </html>

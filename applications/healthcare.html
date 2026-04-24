@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Healthcare — Manthan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --bg-soft: #fafafa;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* LAYOUT */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 100px 20px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.card {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+/* CODE */
+pre {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+  }
+
+  .container {
+    padding: 60px 16px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="../index.html">Manthan</a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Pipeline</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../applications/index.html">Applications</a>
+      <a href="../team/index.html">Team</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TITLE -->
+  <section>
+    <h1>Healthcare Systems</h1>
+
+    <p>
+      Healthcare decisions must be explainable, reproducible,
+      and clinically defensible.
+    </p>
+  </section>
+
+  <!-- PROBLEM -->
+  <section>
+    <div class="label">PROBLEM</div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Inconsistent eligibility</h2>
+        <p>Same patient data can produce different outcomes.</p>
+      </div>
+
+      <div class="card">
+        <h2>Opaque decision paths</h2>
+        <p>Clinicians cannot trace how decisions were made.</p>
+      </div>
+
+      <div class="card">
+        <h2>Audit challenges</h2>
+        <p>Decisions cannot be reliably reproduced later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAILURE -->
+  <section>
+    <div class="label">WHY CURRENT SYSTEMS FAIL</div>
+
+    <p>
+      Healthcare systems rely on mutable workflows, manual overrides,
+      and probabilistic AI — leading to non-deterministic outcomes.
+    </p>
+  </section>
+
+  <!-- SOLUTION -->
+  <section>
+    <div class="label">WITH MANTHAN</div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Deterministic pathways</h2>
+        <p>Identical clinical input produces identical decisions.</p>
+      </div>
+
+      <div class="card">
+        <h2>Transparent logic</h2>
+        <p>Rules and criteria are explicit and versioned.</p>
+      </div>
+
+      <div class="card">
+        <h2>Defensible outcomes</h2>
+        <p>Every decision can be explained and validated.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section>
+    <div class="label">EXAMPLE</div>
+
+    <h2>Treatment eligibility</h2>
+
+    <pre>
+input:
+  age: 65
+  condition: diabetes
+  severity: high
+
+rules v1:
+  age > 60 AND severity == high → ELIGIBLE
+
+output:
+  ELIGIBLE
+    </pre>
+  </section>
+
+</div>
+
+</body>
+</html>
