@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     :root {
       --text: #0a0a0a;
       --muted: #6b7280;
@@ -66,7 +70,7 @@
     }
 
     section {
-      margin-bottom: 140px;
+      margin-bottom: 120px;
     }
 
     .label {
@@ -127,35 +131,26 @@
       border-top: 1px solid var(--border);
     }
 
-    .card h3 {
-      margin: 0 0 6px;
-      font-size: 16px;
-    }
-
-    .card p {
-      font-size: 15px;
-    }
-
     .pipeline {
       margin-top: 30px;
       display: grid;
-      gap: 20px;
+      gap: 16px;
     }
 
     .step {
       padding: 14px 0;
       border-top: 1px solid var(--border);
-      font-size: 15px;
     }
 
     pre {
       margin-top: 20px;
-      padding: 20px;
+      padding: 16px;
       background: #fafafa;
       border: 1px solid var(--border);
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
+      white-space: pre-wrap;
     }
 
     footer {
@@ -163,19 +158,64 @@
       padding: 40px 20px;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 14px;
     }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        margin-left: 0;
+      }
+
+      .container {
+        padding: 60px 16px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <div class="nav">
     <div class="nav-inner">
-      <div class="logo">
-        <a href="./index.html">Manthan</a>
-      </div>
+      <div class="logo"><a href="./index.html">Manthan</a></div>
       <div class="nav-links">
         <a href="#pipeline">Pipeline</a>
         <a href="./docs/index.html">Docs</a>
@@ -186,18 +226,9 @@
 
   <div class="container">
 
-    <!-- HERO -->
     <section>
       <h1 class="gradient">Deterministic<br/>decision infrastructure.</h1>
-
-      <p>
-        Same input. Same output. Always.
-        No AI in evaluation. No hidden defaults.
-      </p>
-
-      <p style="margin-top:10px; font-weight:500;">
-        AI may suggest. Manthan decides.
-      </p>
+      <p>Same input. Same output. Always.</p>
 
       <div class="buttons">
         <a href="#pipeline" class="btn">How it works</a>
@@ -206,78 +237,19 @@
       </div>
     </section>
 
-    <!-- GUARANTEES -->
-    <section>
-      <div class="label">GUARANTEES</div>
-      <h2>Deterministic. Controlled. Verifiable.</h2>
-
-      <div class="grid">
-        <div class="card"><h3>Deterministic</h3><p>No variance. No drift.</p></div>
-        <div class="card"><h3>No AI</h3><p>Evaluation is controlled.</p></div>
-        <div class="card"><h3>No mutation</h3><p>Everything explicit and versioned.</p></div>
-        <div class="card"><h3>Fail-closed</h3><p>Uncertainty blocks execution.</p></div>
-      </div>
-    </section>
-
-    <!-- CONTROL -->
-    <section>
-      <div class="label">CONTROL SURFACE</div>
-      <h2>Decisions from any source. Evaluated the same way.</h2>
-
-      <p>
-        Human input, system output, or AI suggestion — all are treated as input.
-        Evaluation remains deterministic, versioned, and fail-closed.
-      </p>
-
-      <div class="grid">
-        <div class="card"><h3>Human input</h3><p>Validated and evaluated.</p></div>
-        <div class="card"><h3>System output</h3><p>Deterministic evaluation layer.</p></div>
-        <div class="card"><h3>AI suggestion</h3><p>May propose. Never decides.</p></div>
-      </div>
-    </section>
-
-    <!-- PIPELINE -->
     <section id="pipeline">
       <div class="label">PIPELINE</div>
-      <h2>Evaluation flow</h2>
-
       <div class="pipeline">
-        <div class="step"><strong>Validation</strong> → INVALID</div>
-        <div class="step"><strong>Completeness</strong> → INCOMPLETE</div>
-        <div class="step"><strong>Evaluation</strong> → ALLOW / BLOCK / ESCALATE</div>
-        <div class="step"><strong>Explanation</strong> → TRACE</div>
+        <div class="step">Validation → INVALID</div>
+        <div class="step">Completeness → INCOMPLETE</div>
+        <div class="step">Evaluation → ALLOW / BLOCK</div>
+        <div class="step">Explanation → TRACE</div>
       </div>
-    </section>
-
-    <!-- ENVIRONMENTS -->
-    <section>
-      <div class="label">ENVIRONMENTS</div>
-      <h2>Built for regulated systems</h2>
-
-      <div class="grid">
-        <div class="card"><h3>Financial</h3><p>Compliance, fraud, approvals</p></div>
-        <div class="card"><h3>Healthcare</h3><p>Eligibility, treatment, audit</p></div>
-        <div class="card"><h3>Access control</h3><p>Permissions, zero-trust</p></div>
-        <div class="card"><h3>AI governance</h3><p>Agent action gating</p></div>
-      </div>
-    </section>
-
-    <!-- PROOF -->
-    <section>
-      <div class="label">EXAMPLE</div>
-      <h2>Determinism in practice</h2>
-
-      <pre>
-input → rules v1 → output A
-input → rules v1 → output A
-      </pre>
     </section>
 
   </div>
 
-  <footer>
-    Manthan — deterministic decision infrastructure
-  </footer>
+  <footer>Manthan — deterministic decision infrastructure</footer>
 
 </body>
 </html>

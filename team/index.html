@@ -8,11 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     :root {
       --text: #0a0a0a;
       --muted: #6b7280;
       --border: #e5e7eb;
-      --bg-soft: #fafafa;
     }
 
     body {
@@ -110,6 +113,46 @@
     .link:hover {
       text-decoration: underline;
     }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        margin-left: 0;
+      }
+
+      .container {
+        padding: 60px 16px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+    }
+
   </style>
 </head>
 
@@ -141,19 +184,17 @@
 
     <div class="grid">
 
-      <!-- Founder -->
       <div class="card">
-        <h3>Pavan Charak</h3>
-        <div class="role">Founder — Manthan</div>
+        <h3>Pavan Dev Singh Charak</h3>
+        <div class="role">Founder and Builder — Manthan</div>
         <a class="link" href="https://www.linkedin.com/in/pavancharak/" target="_blank">
           LinkedIn →
         </a>
       </div>
 
-      <!-- Advisor -->
       <div class="card">
         <h3>Mohinder Singh Charak</h3>
-        <div class="role">Advisor — governance & oversight</div>
+        <div class="role">Advisor — Governance & Oversight</div>
         <a class="link" href="https://www.linkedin.com/in/mohinder-singh-charak-b246bb346/" target="_blank">
           LinkedIn →
         </a>

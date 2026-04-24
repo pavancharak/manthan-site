@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     :root {
       --text: #0a0a0a;
       --muted: #6b7280;
@@ -22,7 +26,7 @@
       background: #fff;
     }
 
-    /* NAVBAR */
+    /* NAV */
     .nav {
       position: sticky;
       top: 0;
@@ -71,6 +75,7 @@
       top: 60px;
       height: calc(100vh - 60px);
       background: #fff;
+      overflow-y: auto;
     }
 
     .sidebar h3 {
@@ -97,7 +102,7 @@
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 34px;
       margin-bottom: 20px;
     }
 
@@ -109,6 +114,7 @@
     p {
       color: var(--muted);
       line-height: 1.6;
+      font-size: 16px;
     }
 
     pre {
@@ -119,6 +125,7 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
       overflow-x: auto;
+      white-space: pre-wrap;
     }
 
     .block {
@@ -126,6 +133,54 @@
       padding-top: 20px;
       margin-top: 20px;
     }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        margin-left: 0;
+      }
+
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+      }
+
+      .content {
+        margin-left: 0;
+        padding: 30px 16px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+
   </style>
 </head>
 
@@ -150,7 +205,6 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
       <h3>Docs</h3>
-
       <a href="#overview">Overview</a>
       <a href="#pipeline">Pipeline</a>
       <a href="#architecture">Architecture</a>
@@ -164,17 +218,14 @@
     <div class="content">
 
       <h1 id="overview">Overview</h1>
-      <p>
-        Manthan is a deterministic decision infrastructure.
-        Identical input produces identical output. Always.
-      </p>
+      <p>Manthan is a deterministic decision infrastructure.</p>
 
       <div class="block">
         <h2 id="pipeline">Pipeline</h2>
         <pre>
 1. Validation     → INVALID
 2. Completeness   → INCOMPLETE
-3. Evaluation     → ALLOW / BLOCK / ESCALATE
+3. Evaluation     → ALLOW / BLOCK
 4. Explanation    → TRACE
         </pre>
       </div>
@@ -183,37 +234,10 @@
         <h2 id="architecture">Architecture</h2>
         <pre>
 Definition → Schema + Rules
-Signal     → External deterministic inputs
+Signal     → External inputs
 Core       → Pure evaluation
 Token      → Signed proof
 Gateway    → Execution control
-        </pre>
-      </div>
-
-      <div class="block">
-        <h2 id="schema">Schema</h2>
-        <pre>
-{
-  "required": ["amount", "role"]
-}
-        </pre>
-      </div>
-
-      <div class="block">
-        <h2 id="rules">Rules</h2>
-        <pre>
-IF amount <= 1000 AND role == admin
-THEN ALLOW
-        </pre>
-      </div>
-
-      <div class="block">
-        <h2 id="token">Decision Token</h2>
-        <pre>
-{
-  "outcome": "ALLOW",
-  "signature": "..."
-}
         </pre>
       </div>
 
@@ -224,16 +248,6 @@ THEN ALLOW
 - No runtime mutation
 - No AI in evaluation
         </pre>
-      </div>
-
-      <!-- FOUNDER CONTEXT -->
-      <div class="block">
-        <h2>Founder</h2>
-        <p>
-          Manthan enforces deterministic decision systems —
-          where outcomes are reproducible, explainable, and auditable.
-        </p>
-        <p>Built by Pavan Charak.</p>
       </div>
 
     </div>
