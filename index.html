@@ -1,741 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manthan — Deterministic Decision Infrastructure</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manthan × Voice AI — Deterministic Decisions in High-Stakes Conversations</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #0e0e0d;
-    --paper: #f5f3ee;
-    --rule: #c8c4bb;
-    --muted: #7a7670;
-    --accent: #1a3a2a;
-    --accent-light: #e8f0eb;
-    --red: #c0392b;
-    --mono: 'DM Mono', monospace;
-    --serif: 'Fraunces', serif;
+    --bg: #0B0C0F;
+    --bg2: #111318;
+    --bg3: #181B22;
+    --line: rgba(255,255,255,0.07);
+    --line2: rgba(255,255,255,0.13);
+    --text: #E8E9EC;
+    --muted: #7A7E8A;
+    --accent-teal: #1DCBA0;
+    --accent-teal-dim: rgba(29,203,160,0.12);
+    --accent-amber: #F5A623;
+    --accent-amber-dim: rgba(245,166,35,0.10);
+    --accent-red: #E84545;
+    --accent-red-dim: rgba(232,69,69,0.10);
+    --accent-blue: #4B8EF5;
+    --accent-blue-dim: rgba(75,142,245,0.10);
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'Sora', sans-serif;
+    --font-mono: 'DM Mono', monospace;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--mono);
-    font-weight: 300;
-    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
     line-height: 1.7;
     overflow-x: hidden;
   }
 
-  /* ── GRID OVERLAY ── */
+  /* ── Grid lines background ── */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(var(--rule) 1px, transparent 1px),
-      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
     background-size: 60px 60px;
-    opacity: 0.18;
     pointer-events: none;
     z-index: 0;
   }
 
+  section, nav, footer { position: relative; z-index: 1; }
+
   /* ── NAV ── */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
-    height: 56px;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
+    padding: 1.4rem 5vw;
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,12,15,0.85);
   }
 
-  .nav-brand {
-    font-family: var(--mono);
-    font-weight: 500;
+  .nav-logo {
+    font-family: var(--font-mono);
     font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+    color: var(--text);
     text-decoration: none;
-    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .nav-links a:hover { color: var(--ink); }
+  .nav-logo .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    display: inline-block;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
 
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+
+  .nav-pills { display: flex; gap: 6px; }
+  .pill {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--line2);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
 
   /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
+  .hero {
+    min-height: 88vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 56px;
+    place-items: center;
+    padding: 6rem 5vw 4rem;
+    text-align: center;
   }
 
-  .hero-left {
-    padding: 80px 60px 80px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 1px solid var(--rule);
-  }
-
-  .hero-tag {
+  .hero-eyebrow {
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.18em;
+    color: var(--accent-teal);
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 32px;
+    margin-bottom: 1.8rem;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 10px;
   }
 
-  .hero-tag::before {
+  .hero-eyebrow::before, .hero-eyebrow::after {
     content: '';
-    display: block;
-    width: 24px;
+    width: 32px;
     height: 1px;
-    background: var(--muted);
+    background: var(--accent-teal);
+    opacity: 0.5;
   }
 
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    margin-bottom: 32px;
-    color: var(--ink);
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
   }
 
-  h1 em {
+  .hero h1 em {
     font-style: italic;
-    font-weight: 300;
-    color: var(--accent);
+    color: var(--accent-teal);
   }
 
-  .hero-desc {
-    font-size: 15px;
-    line-height: 1.8;
+  .hero-sub {
+    font-size: 16px;
     color: var(--muted);
-    max-width: 420px;
-    margin-bottom: 48px;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
   }
 
-  .hero-cta {
+  .hero-cta-row {
     display: flex;
-    gap: 16px;
-    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 12px 28px;
-    font-family: var(--mono);
+    background: var(--accent-teal);
+    color: #0B0C0F;
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
+    letter-spacing: 0.06em;
+    padding: 12px 28px;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    transition: opacity 0.2s;
   }
 
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-primary:hover { opacity: 0.85; }
 
   .btn-ghost {
+    background: transparent;
     color: var(--muted);
+    font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
+    padding: 12px 28px;
+    border-radius: 4px;
+    border: 1px solid var(--line2);
+    cursor: pointer;
     text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
+    transition: border-color 0.2s, color 0.2s;
   }
 
-  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
-  .hero-right {
-    padding: 80px 60px;
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 1.2rem 5vw;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trust-item .icon {
+    width: 16px; height: 16px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: 6rem 5vw; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-body {
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  /* ── PROBLEM/SOLUTION SPLIT ── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 700px) {
+    .split { grid-template-columns: 1fr; }
+  }
+
+  .split-pane {
+    padding: 2.5rem;
+    background: var(--bg2);
+  }
+
+  .split-pane.danger { border-left: 3px solid var(--accent-red); }
+  .split-pane.safe { border-left: 3px solid var(--accent-teal); }
+
+  .split-pane h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .split-pane.danger h3 { color: var(--accent-red); }
+  .split-pane.safe h3 { color: var(--accent-teal); }
+
+  .problem-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .problem-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .problem-list li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--accent-red);
+    font-weight: 600;
+  }
+  .safe .problem-list li::before {
+    content: '✓';
+    color: var(--accent-teal);
+  }
+
+  /* ── PIPELINE DIAGRAM ── */
+  .pipeline-section { background: var(--bg2); }
+  .pipeline {
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 0;
+    gap: 2px;
   }
 
-  /* ── GUARANTEE CARDS ── */
-  .guarantee {
-    padding: 28px 0;
-    border-bottom: 1px solid var(--rule);
+  .pipeline-step {
     display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 16px;
+    grid-template-columns: 48px 1fr auto;
     align-items: start;
-    animation: fadeUp 0.6s ease both;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+    animation: fadeUp 0.5s ease both;
   }
 
-  .guarantee:first-child { border-top: 1px solid var(--rule); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-  .g-num {
+  .step-num {
+    font-family: var(--font-mono);
     font-size: 11px;
     color: var(--muted);
-    letter-spacing: 0.08em;
-    padding-top: 2px;
+    padding-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .step-content h4 {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .step-content p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .step-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+
+  .badge-teal { background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(29,203,160,0.2); }
+  .badge-amber { background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245,166,35,0.2); }
+  .badge-red { background: var(--accent-red-dim); color: var(--accent-red); border: 1px solid rgba(232,69,69,0.2); }
+  .badge-blue { background: var(--accent-blue-dim); color: var(--accent-blue); border: 1px solid rgba(75,142,245,0.2); }
+  .badge-gray { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line2); }
+
+  /* ── USE CASES ── */
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) { .use-cases-grid { grid-template-columns: 1fr; } }
+
+  .use-case-card {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+  .use-case-card:hover { border-color: var(--line2); }
+
+  .uc-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .uc-tag.health { background: rgba(29,203,160,0.1); color: var(--accent-teal); border: 1px solid rgba(29,203,160,0.2); }
+  .uc-tag.finance { background: rgba(245,166,35,0.1); color: var(--accent-amber); border: 1px solid rgba(245,166,35,0.2); }
+
+  .uc-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+
+  .uc-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .uc-rules { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .uc-rules li {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .uc-rules li::before {
+    content: '→';
+    flex-shrink: 0;
+    color: var(--accent-teal);
+    margin-top: 1px;
+  }
+  .uc-tag.finance ~ .uc-title + .uc-desc + .uc-rules li::before { color: var(--accent-amber); }
+
+  /* ── CONVERSATION TRACE ── */
+  .trace-section { background: var(--bg3); }
+
+  .trace-demo {
+    margin-top: 3rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 760px;
+  }
+
+  .trace-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .trace-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trace-header-dots { display: flex; gap: 5px; }
+  .trace-header-dots span {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--line2);
+  }
+
+  .trace-filename {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .trace-body {
+    padding: 1.5rem;
+    background: #0D0E11;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  .t-key { color: #7A8BB5; }
+  .t-str { color: #A8D8A8; }
+  .t-num { color: #F5A623; }
+  .t-tag { color: var(--muted); }
+  .t-allow { color: var(--accent-teal); font-weight: 500; }
+  .t-block { color: var(--accent-red); font-weight: 500; }
+  .t-esc { color: var(--accent-amber); font-weight: 500; }
+  .t-hash { color: #7A7E8A; font-size: 11px; }
+
+  /* ── GUARANTEES ── */
+  .guarantees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .guarantee {
+    padding: 2rem 1.8rem;
+    background: var(--bg2);
+  }
+
+  .g-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    margin-bottom: 1rem;
   }
 
   .g-title {
-    font-family: var(--mono);
     font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    margin-bottom: 6px;
+    font-size: 14px;
+    margin-bottom: 0.4rem;
   }
 
   .g-desc {
     font-size: 12px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
-  /* ── PRINCIPLE BAR ── */
-  .principle-bar {
-    background: var(--accent);
-    color: var(--paper);
-    padding: 20px 80px;
-    font-family: var(--serif);
-    font-size: clamp(16px, 2vw, 22px);
-    font-style: italic;
-    font-weight: 300;
-    letter-spacing: 0.01em;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    padding: 7rem 5vw;
+    border-top: 1px solid var(--line);
   }
 
-  /* ── HOW IT WORKS ── */
-  #how {
-    padding: 100px 80px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--muted);
-  }
-
-  .pipeline {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--rule);
-    margin-bottom: 60px;
-  }
-
-  .stage {
-    padding: 32px 28px;
-    border-right: 1px solid var(--rule);
-    position: relative;
-    transition: background 0.2s;
-    cursor: default;
-  }
-
-  .stage:last-child { border-right: none; }
-
-  .stage:hover { background: var(--accent-light); }
-
-  .stage-num {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-
-  .stage-title {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 13px;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-
-  .stage-desc {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .stage-outcome {
-    margin-top: 16px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    display: inline-block;
-  }
-
-  .outcome-invalid { background: #fde8e6; color: var(--red); }
-  .outcome-incomplete { background: #fef3e2; color: #8a5c00; }
-  .outcome-decision { background: var(--accent-light); color: var(--accent); }
-  .outcome-trace { background: #e8e6f0; color: #3a2e6e; }
-
-  .fail-closed {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 18px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 13px;
-  }
-
-  .fail-closed-dot {
-    width: 8px; height: 8px;
-    background: var(--red);
-    border-radius: 50%;
-    flex-shrink: 0;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  /* ── ARCHITECTURE ── */
-  #arch {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .arch-left {
-    padding: 100px 60px 100px 80px;
-    border-right: 1px solid var(--rule);
-  }
-
-  .arch-right {
-    padding: 100px 60px;
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-size: clamp(32px, 4vw, 48px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 24px;
-  }
-
-  h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
-
-  .arch-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 32px;
-  }
-
-  .layer-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--rule);
-  }
-
-  .layer {
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 16px;
-    align-items: center;
-    transition: background 0.2s;
-  }
-
-  .layer:last-child { border-bottom: none; }
-  .layer:hover { background: var(--accent-light); }
-
-  .layer-name {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .layer-desc {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  /* Token box */
-  .token-box {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 32px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 2;
-    margin-bottom: 24px;
-  }
-
-  .token-key { color: #9fe1cb; }
-  .token-val { color: #fac775; }
-  .token-str { color: #f5c4b3; }
-  .token-comment { color: #5f5e5a; font-style: italic; }
-
-  /* AI boundary */
-  .ai-boundary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-  }
-
-  .ai-may, .ai-never {
-    padding: 20px 24px;
-    background: var(--paper);
-  }
-
-  .ai-may-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-
-  .ai-never-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-  }
-
-  .ai-list {
-    list-style: none;
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 2;
-  }
-
-  .ai-list li::before {
-    content: '→ ';
-    color: var(--rule);
-  }
-
-  /* ── USE CASES ── */
-  #uses {
-    padding: 100px 80px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .uses-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 64px;
-    align-items: end;
-  }
-
-  .uses-intro {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  .domain-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-  }
-
-  .domain {
-    background: var(--paper);
-    padding: 32px 28px;
-    transition: background 0.2s;
-    cursor: default;
-  }
-
-  .domain:hover { background: var(--accent-light); }
-
-  .domain-icon {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
-
-  .domain-name {
-    font-family: var(--serif);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 12px;
-  }
-
-  .domain-examples {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  /* ── MANUFACTURING SPOTLIGHT ── */
-  #manufacturing {
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 360px 1fr;
-  }
-
-  .mfg-left {
-    padding: 80px 60px 80px 80px;
-    border-right: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--accent);
-    color: var(--paper);
-  }
-
-  .mfg-left .section-label { color: rgba(255,255,255,0.5); }
-  .mfg-left .section-label::before { background: rgba(255,255,255,0.3); }
-
-  .mfg-left h2 { color: var(--paper); }
-  .mfg-left h2 em { color: #9fe1cb; }
-
-  .mfg-left p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.8;
-    margin-top: 16px;
-  }
-
-  .mfg-right {
-    padding: 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    align-content: start;
-  }
-
-  .mfg-cell {
-    background: var(--paper);
-    padding: 28px 24px;
-    transition: background 0.2s;
-  }
-
-  .mfg-cell:hover { background: var(--accent-light); }
-
-  .mfg-cell-title {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-
-  .mfg-cell-items {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.9;
-  }
-
-  /* ── CONSTRAINTS ── */
-  #constraints {
-    padding: 100px 80px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .constraints-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 48px;
-  }
-
-  .constraint {
-    background: var(--paper);
-    padding: 32px 28px;
-    display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: 16px;
-  }
-
-  .constraint-x {
-    font-size: 14px;
-    color: var(--red);
-    font-weight: 500;
-    padding-top: 1px;
-  }
-
-  .constraint-text {
-    font-size: 13px;
-    color: var(--ink);
-    line-height: 1.6;
-  }
-
-  .constraint-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+  .cta-section .section-title { margin-bottom: 1rem; }
+  .cta-section .section-body { margin: 0 auto 2.5rem; text-align: center; }
 
   /* ── FOOTER ── */
   footer {
-    padding: 60px 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-    border-top: 1px solid var(--rule);
-  }
-
-  .footer-brand {
-    font-family: var(--serif);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  .footer-brand em { font-style: italic; font-weight: 300; color: var(--accent); }
-
-  .footer-tagline {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .footer-col-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .footer-links {
-    list-style: none;
-    font-size: 13px;
-    line-height: 2.2;
-  }
-
-  .footer-links a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--ink); }
-
-  .footer-bottom {
-    border-top: 1px solid var(--rule);
-    padding: 20px 80px;
+    border-top: 1px solid var(--line);
+    padding: 2rem 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-left {
+    font-family: var(--font-mono);
     font-size: 11px;
     color: var(--muted);
-    letter-spacing: 0.06em;
   }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .footer-right {
+    display: flex;
+    gap: 2rem;
   }
 
-  .fade-up { animation: fadeUp 0.7s ease both; }
+  .footer-right a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+  }
 
-  .guarantee:nth-child(1) { animation-delay: 0.1s; }
-  .guarantee:nth-child(2) { animation-delay: 0.2s; }
-  .guarantee:nth-child(3) { animation-delay: 0.3s; }
-  .guarantee:nth-child(4) { animation-delay: 0.4s; }
+  .footer-right a:hover { color: var(--text); }
+
+  /* ── VOICE WAVE ANIMATION ── */
+  .voice-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 24px;
+  }
+
+  .wave-bar {
+    width: 2.5px;
+    border-radius: 2px;
+    background: var(--accent-teal);
+    animation: wave 1.2s ease-in-out infinite;
+  }
+
+  .wave-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+  .wave-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+  .wave-bar:nth-child(3) { height: 20px; animation-delay: 0.3s; }
+  .wave-bar:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+  .wave-bar:nth-child(5) { height: 8px; animation-delay: 0.6s; }
+  .wave-bar:nth-child(6) { height: 18px; animation-delay: 0.75s; }
+  .wave-bar:nth-child(7) { height: 10px; animation-delay: 0.9s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 60px 24px 40px; border-right: none; border-bottom: 1px solid var(--rule); }
-    .hero-right { padding: 40px 24px 60px; }
-    #how { padding: 60px 24px; }
-    .pipeline { grid-template-columns: 1fr 1fr; }
-    .stage { border-bottom: 1px solid var(--rule); }
-    #arch { grid-template-columns: 1fr; }
-    .arch-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--rule); }
-    .arch-right { padding: 60px 24px; }
-    #uses { padding: 60px 24px; }
-    .uses-header { grid-template-columns: 1fr; gap: 24px; }
-    .domain-grid { grid-template-columns: 1fr 1fr; }
-    #manufacturing { grid-template-columns: 1fr; }
-    .mfg-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--rule); }
-    .mfg-right { padding: 24px; grid-template-columns: 1fr; }
-    #constraints { padding: 60px 24px; }
-    .constraints-grid { grid-template-columns: 1fr; }
-    footer { grid-template-columns: 1fr; padding: 40px 24px; }
-    .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
-    .principle-bar { padding: 20px 24px; }
-    h1 { font-size: 40px; }
+  @media (max-width: 600px) {
+    .pipeline-step { grid-template-columns: 32px 1fr; }
+    .step-badge { grid-column: 2; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { justify-content: center; }
+    nav .nav-pills { display: none; }
   }
 </style>
 </head>
@@ -743,339 +605,369 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-brand">Manthan</a>
-  <ul class="nav-links">
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#arch">Architecture</a></li>
-    <li><a href="#uses">Use cases</a></li>
-    <li><a href="#constraints">Guarantees</a></li>
-  </ul>
+  <a class="nav-logo" href="#">
+    <span class="dot"></span>
+    MANTHAN
+  </a>
+  <div class="nav-pills">
+    <span class="pill">v2.0 stable</span>
+    <span class="pill">fail-closed</span>
+    <span class="pill">deterministic</span>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Decision infrastructure</div>
-    <h1>Every decision<br><em>traceable.</em><br>Every outcome<br>provable.</h1>
-    <p class="hero-desc">
-      Manthan is a deterministic decision infrastructure. Same input always produces the same output. No AI in the evaluation path. No hidden defaults. No guessing.
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Decision Infrastructure for Voice AI</div>
+    <h1>
+      Every word spoken.<br />
+      Every decision <em>traceable.</em>
+    </h1>
+    <p class="hero-sub">
+      Manthan brings deterministic, auditable decision governance to voice AI agents operating in healthcare and financial environments where uncertainty is not an option.
     </p>
-    <div class="hero-cta">
-      <a href="#how" class="btn-primary">See how it works</a>
-      <a href="#arch" class="btn-ghost">View architecture</a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="guarantee">
-      <span class="g-num">01</span>
-      <div>
-        <div class="g-title">Same input → same output</div>
-        <div class="g-desc">Identical decision inputs always produce identical decisions. No variance, no drift, no operator discretion.</div>
-      </div>
-    </div>
-    <div class="guarantee">
-      <span class="g-num">02</span>
-      <div>
-        <div class="g-title">No AI in evaluation path</div>
-        <div class="g-desc">AI may assist pre- and post-decision. It never touches rule evaluation or decision outcomes.</div>
-      </div>
-    </div>
-    <div class="guarantee">
-      <span class="g-num">03</span>
-      <div>
-        <div class="g-title">No runtime mutation</div>
-        <div class="g-desc">No defaults. No hidden behavior. No changes that weren't explicitly versioned and committed.</div>
-      </div>
-    </div>
-    <div class="guarantee">
-      <span class="g-num">04</span>
-      <div>
-        <div class="g-title">Fail-closed always</div>
-        <div class="g-desc">On any uncertainty, missing field, or error — the system blocks. It never silently allows.</div>
-      </div>
+    <div class="hero-cta-row">
+      <a href="#use-cases" class="btn-primary">See Use Cases</a>
+      <a href="#pipeline" class="btn-ghost">Decision Pipeline ↓</a>
     </div>
   </div>
 </section>
 
-<!-- PRINCIPLE BAR -->
-<div class="principle-bar">
-  "Every decision is traceable, auditable, and built for trust."
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <span class="icon badge-teal">✓</span>
+    Same input → same output. Always.
+  </div>
+  <div class="trust-item">
+    <span class="icon badge-red">×</span>
+    No AI in evaluation path
+  </div>
+  <div class="trust-item">
+    <span class="icon badge-amber">⚡</span>
+    Fail-closed on uncertainty
+  </div>
+  <div class="trust-item">
+    <span class="icon badge-blue">⬡</span>
+    Signed decision tokens
+  </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-label">Decision pipeline</div>
+<!-- PROBLEM / SOLUTION -->
+<section class="section" id="why">
+  <div class="section-label">The Problem</div>
+  <div class="section-title">Voice agents make decisions.<br />Most can't explain them.</div>
+  <p class="section-body">
+    When a voice AI tells a patient their medication is approved, or tells a customer their loan is denied — what actually decided that? Without Manthan, nobody knows.
+  </p>
 
-  <div class="pipeline">
-    <div class="stage">
-      <div class="stage-num">01</div>
-      <div class="stage-title">Validation</div>
-      <div class="stage-desc">Input is checked against the versioned schema. Any mismatch terminates immediately.</div>
-      <span class="stage-outcome outcome-invalid">→ INVALID</span>
+  <div class="split">
+    <div class="split-pane danger">
+      <h3>Without Manthan</h3>
+      <ul class="problem-list">
+        <li>LLM reasoning leaks into decision logic — non-reproducible</li>
+        <li>No audit trail for regulatory review (HIPAA, SEBI, RBI, SOX)</li>
+        <li>Voice agent invents explanations post-hoc</li>
+        <li>Inconsistent outcomes for identical inputs</li>
+        <li>Fail-open: uncertainty defaults to ALLOW</li>
+        <li>No versioned schema — past decisions unprovable</li>
+      </ul>
     </div>
-    <div class="stage">
-      <div class="stage-num">02</div>
-      <div class="stage-title">Completeness</div>
-      <div class="stage-desc">All required fields must be present. A partial input never reaches rule evaluation.</div>
-      <span class="stage-outcome outcome-incomplete">→ INCOMPLETE</span>
+    <div class="split-pane safe">
+      <h3>With Manthan</h3>
+      <ul class="problem-list">
+        <li>Rules evaluated deterministically — zero LLM involvement</li>
+        <li>Every decision is a signed, versioned, replayable token</li>
+        <li>Explanation derived only from matched rule — no invention</li>
+        <li>Same input always produces same output, provably</li>
+        <li>Fail-closed: any uncertainty or error → BLOCK</li>
+        <li>Schema + rule snapshot guarantees historical reproducibility</li>
+      </ul>
     </div>
-    <div class="stage">
-      <div class="stage-num">03</div>
-      <div class="stage-title">Rule evaluation</div>
-      <div class="stage-desc">Input is evaluated against the versioned rule set. No defaults. No interpolation.</div>
-      <span class="stage-outcome outcome-decision">→ ALLOW / BLOCK / ESCALATE</span>
-    </div>
-    <div class="stage">
-      <div class="stage-num">04</div>
-      <div class="stage-title">Explanation</div>
-      <div class="stage-desc">The explanation is derived only from the matched rule. Nothing is inferred or generated.</div>
-      <span class="stage-outcome outcome-trace">→ TRACE BOUND</span>
-    </div>
-  </div>
-
-  <div class="fail-closed">
-    <div class="fail-closed-dot"></div>
-    <span>Fail-closed guarantee — any stage can terminate the pipeline. The system never allows on uncertainty or error.</span>
   </div>
 </section>
 
-<!-- ARCHITECTURE -->
-<section id="arch">
-  <div class="arch-left">
-    <div class="section-label">Architecture</div>
-    <h2>Five layers.<br><em>One guarantee.</em></h2>
-    <p class="arch-desc">
-      Each layer has a clear boundary and a single responsibility. Nothing crosses layers without an explicit contract.
-    </p>
+<!-- PIPELINE -->
+<section class="section pipeline-section" id="pipeline">
+  <div class="section-label">Architecture</div>
+  <div class="section-title">How a voice interaction<br />becomes a decision</div>
+  <p class="section-body">
+    The voice agent's job is to listen and extract. Manthan's job is to decide. These two paths never mix.
+  </p>
 
-    <div class="layer-stack">
-      <div class="layer">
-        <div class="layer-name">Definition</div>
-        <div class="layer-desc">Versioned schema + rule set. Co-constrained — neither can drift independently.</div>
+  <div class="pipeline">
+    <div class="pipeline-step" style="animation-delay:0.05s">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Voice Agent Listens</h4>
+        <p>STT + NLU extracts intent, entities, and context from the caller's speech. AI operates here — in comprehension only, never in evaluation.</p>
       </div>
-      <div class="layer">
-        <div class="layer-name">Signal</div>
-        <div class="layer-desc">Computed outside the core. Deterministic only. AI may suggest, never define.</div>
-      </div>
-      <div class="layer">
-        <div class="layer-name">Core</div>
-        <div class="layer-desc">Evaluates decision input against rules. No AI. No state. No mutation.</div>
-      </div>
-      <div class="layer">
-        <div class="layer-name">Token</div>
-        <div class="layer-desc">Signed proof artifact: hash + signature + trace + event_id + rule_version.</div>
-      </div>
-      <div class="layer">
-        <div class="layer-name">Gateway</div>
-        <div class="layer-desc">Verifies token before execution. ALLOW only. Whitelist enforced. Replay blocked.</div>
-      </div>
+      <div class="step-badge badge-blue">AI ALLOWED</div>
     </div>
-  </div>
-
-  <div class="arch-right">
-    <div class="section-label">Decision token</div>
-
-    <div class="token-box">
-      <span class="token-comment">// signed decision token</span><br>
-      {<br>
-      &nbsp;&nbsp;<span class="token-key">"event_id"</span>: <span class="token-str">"evt_8f3a2c..."</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"outcome"</span>: <span class="token-str">"ALLOW"</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"rule_version"</span>: <span class="token-str">"rules-v4.2.1"</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"schema_version"</span>: <span class="token-str">"schema-v3.0"</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"matched_rule"</span>: <span class="token-str">"allow-standard-ops"</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"trace"</span>: { <span class="token-comment">/* bound */</span> },<br>
-      &nbsp;&nbsp;<span class="token-key">"proof_hash"</span>: <span class="token-val">"sha256:a9f1..."</span>,<br>
-      &nbsp;&nbsp;<span class="token-key">"signature"</span>: <span class="token-val">"ed25519:7bc2..."</span><br>
-      }
+    <div class="pipeline-step" style="animation-delay:0.1s">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Signals Computed</h4>
+        <p>Deterministic signals are computed outside Manthan — patient eligibility score, account standing, risk tier — then passed as structured inputs. Signal logic is fixed, versioned, and auditable.</p>
+      </div>
+      <div class="step-badge badge-gray">DETERMINISTIC</div>
     </div>
-
-    <div class="section-label" style="margin-bottom: 20px;">AI boundary</div>
-
-    <div class="ai-boundary">
-      <div class="ai-may">
-        <div class="ai-may-title">AI may assist</div>
-        <ul class="ai-list">
-          <li>Input structuring</li>
-          <li>Signal suggestion</li>
-          <li>Explanation generation</li>
-        </ul>
+    <div class="pipeline-step" style="animation-delay:0.15s">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Schema Validation</h4>
+        <p>Decision Input is validated against the versioned schema. Every required field must be present and correctly typed. Any mismatch returns INVALID — no guessing, no defaults.</p>
       </div>
-      <div class="ai-never">
-        <div class="ai-never-title">AI must never</div>
-        <ul class="ai-list">
-          <li>Affect rule evaluation</li>
-          <li>Modify outcomes</li>
-          <li>Execute actions</li>
-        </ul>
+      <div class="step-badge badge-red">INVALID → BLOCK</div>
+    </div>
+    <div class="pipeline-step" style="animation-delay:0.2s">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Completeness Check</h4>
+        <p>All required fields must carry values. Missing data returns INCOMPLETE — the agent is instructed to re-prompt the caller for the missing context.</p>
       </div>
+      <div class="step-badge badge-amber">INCOMPLETE → HOLD</div>
+    </div>
+    <div class="pipeline-step" style="animation-delay:0.25s">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h4>Rule Evaluation</h4>
+        <p>Manthan evaluates the Decision Input against the versioned rule set. No AI. No inference. Pure rule matching. Returns ALLOW, BLOCK, or ESCALATE with the matched rule ID.</p>
+      </div>
+      <div class="step-badge badge-teal">DETERMINISTIC</div>
+    </div>
+    <div class="pipeline-step" style="animation-delay:0.3s">
+      <div class="step-num">06</div>
+      <div class="step-content">
+        <h4>Signed Token Issued</h4>
+        <p>A signed decision token is produced — proof_hash + signature + rule_version + event_id. The voice agent may only act on ALLOW tokens. The token is the authorization.</p>
+      </div>
+      <div class="step-badge badge-teal">ALLOW ONLY</div>
+    </div>
+    <div class="pipeline-step" style="animation-delay:0.35s">
+      <div class="step-num">07</div>
+      <div class="step-content">
+        <h4>Voice Agent Responds</h4>
+        <p>The agent reads the decision and the derived explanation back to the caller. The explanation is pulled only from the matched rule — the AI cannot alter or embellish it.</p>
+      </div>
+      <div class="step-badge badge-blue">AI READS ONLY</div>
     </div>
   </div>
 </section>
 
 <!-- USE CASES -->
-<section id="uses">
-  <div class="uses-header">
-    <h2>Built for decisions<br>that <em>matter.</em></h2>
-    <p class="uses-intro">
-      Wherever "who decided, on what basis, and can we prove it?" is a question that needs answering — in a meeting, an audit, or a court — Manthan is the right foundation.
-    </p>
-  </div>
+<section class="section" id="use-cases">
+  <div class="section-label">High-Stakes Use Cases</div>
+  <div class="section-title">Built for conversations<br />where errors have consequences</div>
+  <p class="section-body">Every use case below involves a decision that affects a real person — their health, their money, their rights. Determinism isn't optional.</p>
 
-  <div class="domain-grid">
-    <div class="domain">
-      <div class="domain-icon">Financial</div>
-      <div class="domain-name">Financial Services</div>
-      <div class="domain-examples">Loan approvals · credit decisions · fraud flags · regulatory audits</div>
+  <div class="use-cases-grid">
+
+    <!-- Healthcare 1 -->
+    <div class="use-case-card">
+      <span class="uc-tag health">Healthcare</span>
+      <div class="uc-title">Medication Authorization</div>
+      <p class="uc-desc">Voice agent verifies prior authorization for prescriptions over the phone. Rules encode payer criteria, formulary tiers, and patient eligibility — evaluated identically every time.</p>
+      <ul class="uc-rules">
+        <li>Drug class × formulary tier → ALLOW / BLOCK / ESCALATE</li>
+        <li>Prior auth window enforced by rule, not agent memory</li>
+        <li>Denial reason derived from matched rule for EOB compliance</li>
+        <li>Pharmacist escalation path hardwired, not inferred</li>
+      </ul>
     </div>
-    <div class="domain">
-      <div class="domain-icon">Healthcare</div>
-      <div class="domain-name">Healthcare</div>
-      <div class="domain-examples">Treatment eligibility · insurance pre-auth · clinical trial access · dispensing rules</div>
+
+    <!-- Healthcare 2 -->
+    <div class="use-case-card">
+      <span class="uc-tag health">Healthcare</span>
+      <div class="uc-title">Clinical Triage & Routing</div>
+      <p class="uc-desc">Inbound patient calls are triaged by symptom signals and routed to the appropriate care level — ED, urgent care, or GP callback — without a clinician on the first hop.</p>
+      <ul class="uc-rules">
+        <li>Symptom severity score thresholds set by clinical rule, not AI</li>
+        <li>Fail-closed: ambiguous presentation always escalates</li>
+        <li>Red-flag keyword signals computed before rule entry</li>
+        <li>Full trace for post-incident clinical audit</li>
+      </ul>
     </div>
-    <div class="domain">
-      <div class="domain-icon">Legal</div>
-      <div class="domain-name">Legal &amp; Compliance</div>
-      <div class="domain-examples">Contract gates · sanctions screening · policy enforcement · regulatory filings</div>
+
+    <!-- Healthcare 3 -->
+    <div class="use-case-card">
+      <span class="uc-tag health">Healthcare</span>
+      <div class="uc-title">Insurance Claim Adjudication</div>
+      <p class="uc-desc">Voice agent handles first-notice-of-loss calls for health insurance. Manthan adjudicates coverage eligibility in real time — every rule tied to policy version and member plan.</p>
+      <ul class="uc-rules">
+        <li>Policy version snapshot bound to each decision token</li>
+        <li>Exclusion lists evaluated as deterministic signal inputs</li>
+        <li>Partially complete claims route to human adjuster — never auto-approved</li>
+        <li>Replay-safe: event_id prevents duplicate adjudication</li>
+      </ul>
     </div>
-    <div class="domain">
-      <div class="domain-icon">Identity</div>
-      <div class="domain-name">Access Control</div>
-      <div class="domain-examples">Permission grants · role assignment · privileged ops · zero-trust enforcement</div>
+
+    <!-- Finance 1 -->
+    <div class="use-case-card">
+      <span class="uc-tag finance">Financial</span>
+      <div class="uc-title">Loan & Credit Decisioning</div>
+      <p class="uc-desc">A caller applies for a personal loan via voice. Manthan evaluates the application against underwriting rules — credit tier, debt-to-income, employment status — in one deterministic pass.</p>
+      <ul class="uc-rules">
+        <li>Credit score band × DTI ratio → tiered approval decision</li>
+        <li>Adverse action notice generated from matched rule for FCRA</li>
+        <li>No LLM can soften or override a BLOCK decision</li>
+        <li>Every denial is replayable for regulatory review</li>
+      </ul>
     </div>
-    <div class="domain">
-      <div class="domain-icon">Government</div>
-      <div class="domain-name">Public Sector</div>
-      <div class="domain-examples">Benefit eligibility · permit approvals · tax assessments · procurement gates</div>
+
+    <!-- Finance 2 -->
+    <div class="use-case-card">
+      <span class="uc-tag finance">Financial</span>
+      <div class="uc-title">Transaction Dispute Resolution</div>
+      <p class="uc-desc">Customer calls to dispute a transaction. Voice agent collects context; Manthan evaluates dispute eligibility rules — amount thresholds, merchant category, dispute window.</p>
+      <ul class="uc-rules">
+        <li>Dispute window enforced by rule — not guessed by agent</li>
+        <li>Chargeback eligibility tied to merchant category code signals</li>
+        <li>High-value disputes auto-escalate by rule, never by AI judgment</li>
+        <li>Signed token required before provisional credit is issued</li>
+      </ul>
     </div>
-    <div class="domain">
-      <div class="domain-icon">AI Safety</div>
-      <div class="domain-name">AI Governance</div>
-      <div class="domain-examples">Agent action gating · model output approval · agentic task control · AI audit trails</div>
+
+    <!-- Finance 3 -->
+    <div class="use-case-card">
+      <span class="uc-tag finance">Financial</span>
+      <div class="uc-title">KYC & Account Onboarding</div>
+      <p class="uc-desc">Voice-first onboarding for bank accounts. Manthan gates each step — identity verified, watchlist clear, document valid — with a decision token required to proceed.</p>
+      <ul class="uc-rules">
+        <li>Watchlist match → immediate BLOCK, no agent override</li>
+        <li>Document validity signals computed, not inferred by LLM</li>
+        <li>Step-gated: each phase requires prior ALLOW token</li>
+        <li>Full onboarding trace satisfies AML record-keeping rules</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRACE DEMO -->
+<section class="section trace-section" id="trace">
+  <div class="section-label">Decision Token</div>
+  <div class="section-title">What gets signed<br />after every decision</div>
+  <p class="section-body">
+    The voice agent receives exactly this token. It may read the explanation. It may not alter the outcome. It may only execute if the outcome is ALLOW and the signature is valid.
+  </p>
+
+  <div class="trace-demo">
+    <div class="trace-header">
+      <div class="trace-header-left">
+        <div class="trace-header-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="trace-filename">decision_token.json</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="voice-wave">
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+        <span class="step-badge badge-teal">ALLOW</span>
+      </div>
+    </div>
+    <div class="trace-body">
+<span class="t-tag">{</span><br/>
+&nbsp;&nbsp;<span class="t-key">"event_id"</span><span class="t-tag">:</span> <span class="t-str">"evt_01JKPH2MNQ8VZ3XRTB"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;<span class="t-key">"timestamp"</span><span class="t-tag">:</span> <span class="t-str">"2025-03-14T09:42:11Z"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;<span class="t-key">"schema_version"</span><span class="t-tag">:</span> <span class="t-str">"health.medication_auth.v3"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;<span class="t-key">"rule_version"</span><span class="t-tag">:</span> <span class="t-str">"formulary_rules.v11"</span><span class="t-tag">,</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="t-key">"input"</span><span class="t-tag">: {</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"member_id"</span><span class="t-tag">:</span> <span class="t-str">"MBR-884921"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"drug_code"</span><span class="t-tag">:</span> <span class="t-str">"NDC-60505-0114-1"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"formulary_tier"</span><span class="t-tag">:</span> <span class="t-num">2</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"prior_auth_active"</span><span class="t-tag">:</span> <span class="t-str">"true"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"eligibility_score"</span><span class="t-tag">:</span> <span class="t-num">0.94</span><br/>
+&nbsp;&nbsp;<span class="t-tag">},</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="t-key">"outcome"</span><span class="t-tag">:</span> <span class="t-allow">"ALLOW"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;<span class="t-key">"matched_rule"</span><span class="t-tag">:</span> <span class="t-str">"RULE-MED-044: tier-2 drug with active PA and eligibility &gt; 0.85 → ALLOW"</span><span class="t-tag">,</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="t-key">"explanation"</span><span class="t-tag">:</span> <span class="t-str">"Authorization approved. Tier 2 formulary drug. Prior authorization is active. Member eligibility confirmed above threshold."</span><span class="t-tag">,</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="t-key">"trace"</span><span class="t-tag">: {</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"validation"</span><span class="t-tag">:</span> <span class="t-str">"PASS"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"completeness"</span><span class="t-tag">:</span> <span class="t-str">"PASS"</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"rules_evaluated"</span><span class="t-tag">:</span> <span class="t-num">7</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"first_match"</span><span class="t-tag">:</span> <span class="t-str">"RULE-MED-044"</span><br/>
+&nbsp;&nbsp;<span class="t-tag">},</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="t-key">"proof_hash"</span><span class="t-tag">:</span> <span class="t-hash">"sha256:a4f1c9d27e883b0f1e4c82ac..."</span><span class="t-tag">,</span><br/>
+&nbsp;&nbsp;<span class="t-key">"signature"</span><span class="t-tag">:</span> <span class="t-hash">"ed25519:3f9a1b2c8d4e7f0123456789abcdef..."</span><br/>
+<span class="t-tag">}</span>
     </div>
   </div>
 </section>
 
-<!-- MANUFACTURING SPOTLIGHT -->
-<section id="manufacturing">
-  <div class="mfg-left">
-    <div class="section-label">Spotlight</div>
-    <h2>Manufacturing<br><em>grade trust.</em></h2>
-    <p>Factories run on gates. Every transition from raw material to finished goods has a decision point. Manthan replaces tribal knowledge and operator discretion with signed, versioned, auditable rule evaluation.</p>
-    <p style="margin-top: 16px;">When a recall happens, the question isn't "what probably happened" — it's "what exactly was decided, by which rule, at which version." Manthan answers that instantly.</p>
-  </div>
+<!-- GUARANTEES -->
+<section class="section" id="guarantees">
+  <div class="section-label">Core Guarantees</div>
+  <div class="section-title">What Manthan promises.<br />Contractually, not aspirationally.</div>
 
-  <div class="mfg-right">
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Quality control</div>
-      <div class="mfg-cell-items">Pass / fail against spec<br>Defect classification<br>Hold vs release<br>Rework routing</div>
+  <div class="guarantees-grid">
+    <div class="guarantee">
+      <div class="g-icon" style="background:var(--accent-teal-dim);">▣</div>
+      <div class="g-title">Determinism</div>
+      <p class="g-desc">Same Decision Input always produces the same Decision Output. No variance, no mood, no context window drift.</p>
     </div>
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Production gating</div>
-      <div class="mfg-cell-items">Batch release<br>Line start approval<br>Change-over clearance<br>Scrap disposition</div>
+    <div class="guarantee">
+      <div class="g-icon" style="background:var(--accent-red-dim);">⊘</div>
+      <div class="g-title">No AI in evaluation</div>
+      <p class="g-desc">AI helps structure input and read output. It never touches rule evaluation. The core engine is pure logic.</p>
     </div>
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Safety &amp; compliance</div>
-      <div class="mfg-cell-items">Equipment clearance<br>Hazmat handling<br>Lockout / tagout auth<br>Incident escalation</div>
+    <div class="guarantee">
+      <div class="g-icon" style="background:var(--accent-amber-dim);">↯</div>
+      <div class="g-title">Fail-closed</div>
+      <p class="g-desc">On error, uncertainty, invalid schema, or incomplete data — the answer is always BLOCK. Never ALLOW by default.</p>
     </div>
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Traceability &amp; recall</div>
-      <div class="mfg-cell-items">Batch genealogy<br>Recall scope definition<br>Deviation disposition<br>Field complaint linkage</div>
+    <div class="guarantee">
+      <div class="g-icon" style="background:var(--accent-blue-dim);">⬡</div>
+      <div class="g-title">Signed tokens</div>
+      <p class="g-desc">Every decision produces a cryptographically signed token. Execution is gated on token validity. Replay is prevented by event_id.</p>
     </div>
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Supplier qualification</div>
-      <div class="mfg-cell-items">Vendor approval<br>Material acceptance<br>Incoming inspection<br>Approved vendor list</div>
+    <div class="guarantee">
+      <div class="g-icon" style="background:var(--accent-teal-dim);">⟳</div>
+      <div class="g-title">Reproducibility</div>
+      <p class="g-desc">Past decisions can be replayed exactly using the original schema + rule snapshot. History is immutable and auditable.</p>
     </div>
-    <div class="mfg-cell">
-      <div class="mfg-cell-title">Maintenance &amp; assets</div>
-      <div class="mfg-cell-items">Preventive maintenance gates<br>Run vs replace decisions<br>Calibration status<br>Asset downtime approval</div>
+    <div class="guarantee">
+      <div class="g-icon" style="background:rgba(255,255,255,0.05);">≡</div>
+      <div class="g-title">Versioned evolution</div>
+      <p class="g-desc">No hidden defaults. No silent changes. Every schema or rule change requires a version bump. No retroactive mutations.</p>
     </div>
   </div>
 </section>
 
-<!-- HARD CONSTRAINTS -->
-<section id="constraints">
-  <div class="section-label">Hard constraints</div>
-  <h2>What the system<br><em>will never do.</em></h2>
-
-  <div class="constraints-grid">
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No change without version increment</div>
-        <div class="constraint-sub">Every schema and rule change is explicit, versioned, and committed.</div>
-      </div>
-    </div>
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No retroactive changes to past decisions</div>
-        <div class="constraint-sub">Past decisions remain reproducible with the original schema and rule snapshot.</div>
-      </div>
-    </div>
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No hidden defaults introduced</div>
-        <div class="constraint-sub">Every field is explicit. Nothing is assumed. Nothing falls through silently.</div>
-      </div>
-    </div>
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No bypass of validation or completeness</div>
-        <div class="constraint-sub">The pipeline cannot be shortcutted. Every stage runs in order.</div>
-      </div>
-    </div>
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No change that breaks determinism</div>
-        <div class="constraint-sub">All evolution paths — schema, rules, signals, execution — preserve reproducibility.</div>
-      </div>
-    </div>
-    <div class="constraint">
-      <span class="constraint-x">×</span>
-      <div>
-        <div class="constraint-text">No self-modification</div>
-        <div class="constraint-sub">The system does not learn, adapt, or evolve without explicit human instruction.</div>
-      </div>
-    </div>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-label" style="text-align:center;">Get Started</div>
+  <div class="section-title">Ready to make your voice agent accountable?</div>
+  <p class="section-body">
+    Start with a use case. Define your schema. Write your first rules. Manthan handles the rest — deterministically.
+  </p>
+  <div class="hero-cta-row">
+    <a href="#pipeline" class="btn-primary">Read the Docs</a>
+    <a href="#use-cases" class="btn-ghost">View Use Cases</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-brand">Man<em>than</em></div>
-    <div class="footer-tagline">Deterministic decision infrastructure.<br>Built for trust at every layer.</div>
+  <div class="footer-left">
+    © 2025 Manthan · Deterministic Decision Infrastructure · v2.0
   </div>
-  <div>
-    <div class="footer-col-title">Architecture</div>
-    <ul class="footer-links">
-      <li><a href="#how">Decision pipeline</a></li>
-      <li><a href="#arch">Layer stack</a></li>
-      <li><a href="#arch">Signed tokens</a></li>
-      <li><a href="#arch">AI boundary</a></li>
-      <li><a href="#constraints">Hard constraints</a></li>
-    </ul>
-  </div>
-  <div>
-    <div class="footer-col-title">Use cases</div>
-    <ul class="footer-links">
-      <li><a href="#uses">Financial services</a></li>
-      <li><a href="#uses">Healthcare</a></li>
-      <li><a href="#manufacturing">Manufacturing</a></li>
-      <li><a href="#uses">AI governance</a></li>
-      <li><a href="#uses">Public sector</a></li>
-    </ul>
+  <div class="footer-right">
+    <a href="#">Schema Docs</a>
+    <a href="#">Rule Reference</a>
+    <a href="#">Signal Guide</a>
+    <a href="#">Audit Trail</a>
   </div>
 </footer>
-
-<div class="footer-bottom">
-  <span>Manthan — deterministic decision infrastructure</span>
-  <span>Every decision traceable · auditable · reproducible</span>
-</div>
 
 </body>
 </html>
