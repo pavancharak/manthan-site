@@ -618,7 +618,7 @@ footer{
       and proves it.
     </h1>
     <p class="hero-body fade-up d3">
-      Voice AI agents listen, understand, and extract. Then they hand off to Manthan — the deterministic layer that evaluates, decides, signs, and makes every decision replayable forever.
+      Voice AI agents listen, understand, and extract. Then they hand off to Manthan , the deterministic layer that evaluates, decides, signs, and makes every decision replayable forever.
     </p>
     <div class="hero-actions fade-up d4">
       <a href="#pipeline" class="btn-dark">See How It Works</a>
@@ -643,7 +643,7 @@ footer{
         <div class="cc-cell right g">Same input → same output. Always.</div>
 
         <div class="cc-cell left">Fails open — uncertain? ALLOW</div>
-        <div class="cc-cell right">Fails closed — uncertain? BLOCK</div>
+        <div class="cc-cell right">Fails closed uncertain? BLOCK</div>
 
         <div class="cc-cell left">No audit trail for regulators</div>
         <div class="cc-cell right">Signed token, full trace, replayable</div>
@@ -672,7 +672,7 @@ footer{
   </div>
   <div class="stat fade-up d4">
     <div class="stat-num">1<span>:1</span></div>
-    <div class="stat-label">input to output — deterministic</div>
+    <div class="stat-label">input to output deterministic</div>
   </div>
 </div>
 
@@ -708,7 +708,7 @@ footer{
         <div class="p-num">02</div>
         <span class="p-icon" style="font-size:16px">⚙</span>
         <div class="p-name">Signals computed</div>
-        <div class="p-desc">Risk score, eligibility, tier — computed deterministically, passed as inputs.</div>
+        <div class="p-desc">Risk score, eligibility, tier computed deterministically, passed as inputs.</div>
         <span class="p-badge pb-ink">AI: structure</span>
       </div>
 
@@ -770,14 +770,14 @@ footer{
         <div class="uc-name">Medication Authorization</div>
         <p class="uc-desc">Voice agent verifies prior auth for prescriptions in real time. Rules encode formulary tiers, payer criteria, eligibility windows.</p>
         <div class="uc-rule">Formulary tier × PA status → ALLOW / BLOCK / ESCALATE</div>
-        <div class="uc-rule">Denial reason from matched rule — satisfies EOB requirements</div>
+        <div class="uc-rule">Denial reason from matched rule satisfies EOB requirements</div>
         <div class="uc-rule">Pharmacist escalation hardwired, not inferred by agent</div>
       </div>
 
       <div class="uc-card">
         <span class="uc-sector health">Healthcare</span>
         <div class="uc-name">Clinical Triage & Routing</div>
-        <p class="uc-desc">Inbound patient calls triaged and routed — ED, urgent care, GP callback — by severity rules, not LLM judgment.</p>
+        <p class="uc-desc">Inbound patient calls triaged and routed ED, urgent care, GP callback by severity rules, not LLM judgment.</p>
         <div class="uc-rule">Symptom severity thresholds set by clinical rule, not AI</div>
         <div class="uc-rule">Ambiguous presentation always escalates — fail-closed</div>
         <div class="uc-rule">Full trace available for post-incident clinical audit</div>
@@ -795,7 +795,7 @@ footer{
       <div class="uc-card">
         <span class="uc-sector finance">Financial</span>
         <div class="uc-name">Loan & Credit Decisioning</div>
-        <p class="uc-desc">Voice-first loan applications evaluated against underwriting rules — credit tier, DTI, employment — in one deterministic pass.</p>
+        <p class="uc-desc">Voice-first loan applications evaluated against underwriting rules credit tier, DTI, employment in one deterministic pass.</p>
         <div class="uc-rule amber">Credit band × DTI ratio → tiered approval decision</div>
         <div class="uc-rule amber">Adverse action notice from matched rule — satisfies FCRA</div>
         <div class="uc-rule amber">No LLM can soften or override a BLOCK. Ever.</div>
@@ -804,7 +804,7 @@ footer{
       <div class="uc-card">
         <span class="uc-sector finance">Financial</span>
         <div class="uc-name">Transaction Dispute Resolution</div>
-        <p class="uc-desc">Dispute eligibility evaluated by rule — amount threshold, merchant category, dispute window — not by agent reasoning.</p>
+        <p class="uc-desc">Dispute eligibility evaluated by rule amount threshold, merchant category, dispute window not by agent reasoning.</p>
         <div class="uc-rule amber">Dispute window enforced by rule, not guessed by agent</div>
         <div class="uc-rule amber">High-value disputes auto-escalate by rule, not AI judgment</div>
         <div class="uc-rule amber">Signed ALLOW token required before provisional credit issued</div>
@@ -813,7 +813,7 @@ footer{
       <div class="uc-card">
         <span class="uc-sector finance">Financial</span>
         <div class="uc-name">KYC & Account Onboarding</div>
-        <p class="uc-desc">Voice-first onboarding gated step by step — identity, watchlist, document — each requiring a valid ALLOW token to proceed.</p>
+        <p class="uc-desc">Voice-first onboarding gated step by step identity, watchlist, document each requiring a valid ALLOW token to proceed.</p>
         <div class="uc-rule amber">Watchlist match → immediate BLOCK, no override possible</div>
         <div class="uc-rule amber">Step-gated: each phase requires prior ALLOW token</div>
         <div class="uc-rule amber">Full trace satisfies AML record-keeping obligations</div>
@@ -843,7 +843,7 @@ footer{
         <div class="proof-pt">
           <div class="proof-num">02</div>
           <div>
-            <div class="proof-pt-title">Proof hash + signature — tamper-evident</div>
+            <div class="proof-pt-title">Proof hash + signature tamper-evident</div>
             <p class="proof-pt-body">The token is signed with a cryptographic proof_hash. Any modification — of the outcome, explanation, or inputs — breaks the signature.</p>
           </div>
         </div>
@@ -929,7 +929,7 @@ footer{
       <div class="g-card">
         <div class="g-mark">↯</div>
         <div class="g-title">Fail-closed</div>
-        <p class="g-desc">Error, uncertainty, incomplete data, schema mismatch — the answer is always BLOCK. ALLOW is never the default.</p>
+        <p class="g-desc">Error, uncertainty, incomplete data, schema mismatch the answer is always BLOCK. ALLOW is never the default.</p>
       </div>
       <div class="g-card">
         <div class="g-mark">⬡</div>
