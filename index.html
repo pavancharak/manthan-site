@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Manthan × Voice AI — Deterministic Decisions in High-Stakes Conversations</title>
+<title>Manthan × Voice AI Deterministic Decisions in High-Stakes Conversations</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -664,7 +664,7 @@
     <div class="split-pane danger">
       <h3>Without Manthan</h3>
       <ul class="problem-list">
-        <li>LLM reasoning leaks into decision logic — non-reproducible</li>
+        <li>LLM reasoning leaks into decision logic non-reproducible</li>
         <li>No audit trail for regulatory review (HIPAA, SEBI, RBI, SOX)</li>
         <li>Voice agent invents explanations post-hoc</li>
         <li>Inconsistent outcomes for identical inputs</li>
@@ -675,7 +675,7 @@
     <div class="split-pane safe">
       <h3>With Manthan</h3>
       <ul class="problem-list">
-        <li>Rules evaluated deterministically — zero LLM involvement</li>
+        <li>Rules evaluated deterministically zero LLM involvement</li>
         <li>Every decision is a signed, versioned, replayable token</li>
         <li>Explanation derived only from matched rule — no invention</li>
         <li>Same input always produces same output, provably</li>
@@ -739,7 +739,7 @@
       <div class="step-num">06</div>
       <div class="step-content">
         <h4>Signed Token Issued</h4>
-        <p>A signed decision token is produced — proof_hash + signature + rule_version + event_id. The voice agent may only act on ALLOW tokens. The token is the authorization.</p>
+        <p>A signed decision token is produced proof_hash + signature + rule_version + event_id. The voice agent may only act on ALLOW tokens. The token is the authorization.</p>
       </div>
       <div class="step-badge badge-teal">ALLOW ONLY</div>
     </div>
@@ -747,7 +747,7 @@
       <div class="step-num">07</div>
       <div class="step-content">
         <h4>Voice Agent Responds</h4>
-        <p>The agent reads the decision and the derived explanation back to the caller. The explanation is pulled only from the matched rule — the AI cannot alter or embellish it.</p>
+        <p>The agent reads the decision and the derived explanation back to the caller. The explanation is pulled only from the matched rule the AI cannot alter or embellish it.</p>
       </div>
       <div class="step-badge badge-blue">AI READS ONLY</div>
     </div>
@@ -758,7 +758,7 @@
 <section class="section" id="use-cases">
   <div class="section-label">High-Stakes Use Cases</div>
   <div class="section-title">Built for conversations<br />where errors have consequences</div>
-  <p class="section-body">Every use case below involves a decision that affects a real person — their health, their money, their rights. Determinism isn't optional.</p>
+  <p class="section-body">Every use case below involves a decision that affects a real person their health, their money, their rights. Determinism isn't optional.</p>
 
   <div class="use-cases-grid">
 
@@ -831,7 +831,7 @@
     <div class="use-case-card">
       <span class="uc-tag finance">Financial</span>
       <div class="uc-title">KYC & Account Onboarding</div>
-      <p class="uc-desc">Voice-first onboarding for bank accounts. Manthan gates each step — identity verified, watchlist clear, document valid with a decision token required to proceed.</p>
+      <p class="uc-desc">Voice-first onboarding for bank accounts. Manthan gates each step identity verified, watchlist clear, document valid with a decision token required to proceed.</p>
       <ul class="uc-rules">
         <li>Watchlist match → immediate BLOCK, no agent override</li>
         <li>Document validity signals computed, not inferred by LLM</li>
@@ -921,7 +921,7 @@
     <div class="guarantee">
       <div class="g-icon" style="background:var(--accent-amber-dim);">↯</div>
       <div class="g-title">Fail-closed</div>
-      <p class="g-desc">On error, uncertainty, invalid schema, or incomplete data — the answer is always BLOCK. Never ALLOW by default.</p>
+      <p class="g-desc">On error, uncertainty, invalid schema, or incomplete data the answer is always BLOCK. Never ALLOW by default.</p>
     </div>
     <div class="guarantee">
       <div class="g-icon" style="background:var(--accent-blue-dim);">⬡</div>
