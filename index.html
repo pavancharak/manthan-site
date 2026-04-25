@@ -9,21 +9,21 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0B0C0F;
-    --bg2: #111318;
-    --bg3: #181B22;
-    --line: rgba(255,255,255,0.07);
-    --line2: rgba(255,255,255,0.13);
-    --text: #E8E9EC;
-    --muted: #7A7E8A;
-    --accent-teal: #1DCBA0;
-    --accent-teal-dim: rgba(29,203,160,0.12);
-    --accent-amber: #F5A623;
-    --accent-amber-dim: rgba(245,166,35,0.10);
-    --accent-red: #E84545;
-    --accent-red-dim: rgba(232,69,69,0.10);
-    --accent-blue: #4B8EF5;
-    --accent-blue-dim: rgba(75,142,245,0.10);
+    --bg: #F7F8FA;
+    --bg2: #FFFFFF;
+    --bg3: #EEF0F4;
+    --line: rgba(0,0,0,0.07);
+    --line2: rgba(0,0,0,0.13);
+    --text: #141518;
+    --muted: #5C6270;
+    --accent-teal: #0D9E7A;
+    --accent-teal-dim: rgba(13,158,122,0.10);
+    --accent-amber: #B87800;
+    --accent-amber-dim: rgba(184,120,0,0.09);
+    --accent-red: #C93535;
+    --accent-red-dim: rgba(201,53,53,0.09);
+    --accent-blue: #2B6FD4;
+    --accent-blue-dim: rgba(43,111,212,0.09);
     --font-display: 'DM Serif Display', Georgia, serif;
     --font-body: 'Sora', sans-serif;
     --font-mono: 'DM Mono', monospace;
@@ -40,15 +40,13 @@
     overflow-x: hidden;
   }
 
-  /* ── Grid lines background ── */
+  /* ── Subtle dot grid background ── */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
     pointer-events: none;
     z-index: 0;
   }
@@ -66,7 +64,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(11,12,15,0.85);
+    background: rgba(247,248,250,0.92);
   }
 
   .nav-logo {
@@ -166,7 +164,7 @@
 
   .btn-primary {
     background: var(--accent-teal);
-    color: #0B0C0F;
+    color: #FFFFFF;
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
@@ -304,7 +302,7 @@
   }
 
   /* ── PIPELINE DIAGRAM ── */
-  .pipeline-section { background: var(--bg2); }
+  .pipeline-section { background: #F0F4F2; }
   .pipeline {
     margin-top: 3rem;
     display: flex;
@@ -431,7 +429,7 @@
   .uc-tag.finance ~ .uc-title + .uc-desc + .uc-rules li::before { color: var(--accent-amber); }
 
   /* ── CONVERSATION TRACE ── */
-  .trace-section { background: var(--bg3); }
+  .trace-section { background: #F7F8FA; }
 
   .trace-demo {
     margin-top: 3rem;
@@ -470,21 +468,21 @@
 
   .trace-body {
     padding: 1.5rem;
-    background: #0D0E11;
+    background: #F0F2F7;
     font-family: var(--font-mono);
     font-size: 12px;
     line-height: 1.8;
     overflow-x: auto;
   }
 
-  .t-key { color: #7A8BB5; }
-  .t-str { color: #A8D8A8; }
-  .t-num { color: #F5A623; }
-  .t-tag { color: var(--muted); }
-  .t-allow { color: var(--accent-teal); font-weight: 500; }
-  .t-block { color: var(--accent-red); font-weight: 500; }
-  .t-esc { color: var(--accent-amber); font-weight: 500; }
-  .t-hash { color: #7A7E8A; font-size: 11px; }
+  .t-key { color: #2B5EA7; }
+  .t-str { color: #2E7D4F; }
+  .t-num { color: #A0610A; }
+  .t-tag { color: #777E90; }
+  .t-allow { color: #0D9E7A; font-weight: 500; }
+  .t-block { color: #C93535; font-weight: 500; }
+  .t-esc { color: #B87800; font-weight: 500; }
+  .t-hash { color: #9AA0AE; font-size: 11px; }
 
   /* ── GUARANTEES ── */
   .guarantees-grid {
@@ -936,7 +934,7 @@
       <p class="g-desc">Past decisions can be replayed exactly using the original schema + rule snapshot. History is immutable and auditable.</p>
     </div>
     <div class="guarantee">
-      <div class="g-icon" style="background:rgba(255,255,255,0.05);">≡</div>
+      <div class="g-icon" style="background:rgba(255,255,255,0.7); border: 1px solid var(--line2);">≡</div>
       <div class="g-title">Versioned evolution</div>
       <p class="g-desc">No hidden defaults. No silent changes. Every schema or rule change requires a version bump. No retroactive mutations.</p>
     </div>
