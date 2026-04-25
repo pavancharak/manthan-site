@@ -669,7 +669,7 @@
         <li>Voice agent invents explanations post-hoc</li>
         <li>Inconsistent outcomes for identical inputs</li>
         <li>Fail-open: uncertainty defaults to ALLOW</li>
-        <li>No versioned schema — past decisions unprovable</li>
+        <li>No versioned schema past decisions unprovable</li>
       </ul>
     </div>
     <div class="split-pane safe">
@@ -699,7 +699,7 @@
       <div class="step-num">01</div>
       <div class="step-content">
         <h4>Voice Agent Listens</h4>
-        <p>STT + NLU extracts intent, entities, and context from the caller's speech. AI operates here — in comprehension only, never in evaluation.</p>
+        <p>STT + NLU extracts intent, entities, and context from the caller's speech. AI operates here in comprehension only, never in evaluation.</p>
       </div>
       <div class="step-badge badge-blue">AI ALLOWED</div>
     </div>
@@ -707,7 +707,7 @@
       <div class="step-num">02</div>
       <div class="step-content">
         <h4>Signals Computed</h4>
-        <p>Deterministic signals are computed outside Manthan — patient eligibility score, account standing, risk tier — then passed as structured inputs. Signal logic is fixed, versioned, and auditable.</p>
+        <p>Deterministic signals are computed outside Manthan patient eligibility score, account standing, risk tier — then passed as structured inputs. Signal logic is fixed, versioned, and auditable.</p>
       </div>
       <div class="step-badge badge-gray">DETERMINISTIC</div>
     </div>
@@ -766,7 +766,7 @@
     <div class="use-case-card">
       <span class="uc-tag health">Healthcare</span>
       <div class="uc-title">Medication Authorization</div>
-      <p class="uc-desc">Voice agent verifies prior authorization for prescriptions over the phone. Rules encode payer criteria, formulary tiers, and patient eligibility — evaluated identically every time.</p>
+      <p class="uc-desc">Voice agent verifies prior authorization for prescriptions over the phone. Rules encode payer criteria, formulary tiers, and patient eligibility evaluated identically every time.</p>
       <ul class="uc-rules">
         <li>Drug class × formulary tier → ALLOW / BLOCK / ESCALATE</li>
         <li>Prior auth window enforced by rule, not agent memory</li>
@@ -779,7 +779,7 @@
     <div class="use-case-card">
       <span class="uc-tag health">Healthcare</span>
       <div class="uc-title">Clinical Triage & Routing</div>
-      <p class="uc-desc">Inbound patient calls are triaged by symptom signals and routed to the appropriate care level — ED, urgent care, or GP callback — without a clinician on the first hop.</p>
+      <p class="uc-desc">Inbound patient calls are triaged by symptom signals and routed to the appropriate care level ED, urgent care, or GP callback without a clinician on the first hop.</p>
       <ul class="uc-rules">
         <li>Symptom severity score thresholds set by clinical rule, not AI</li>
         <li>Fail-closed: ambiguous presentation always escalates</li>
@@ -805,7 +805,7 @@
     <div class="use-case-card">
       <span class="uc-tag finance">Financial</span>
       <div class="uc-title">Loan & Credit Decisioning</div>
-      <p class="uc-desc">A caller applies for a personal loan via voice. Manthan evaluates the application against underwriting rules — credit tier, debt-to-income, employment status — in one deterministic pass.</p>
+      <p class="uc-desc">A caller applies for a personal loan via voice. Manthan evaluates the application against underwriting rules — credit tier, debt-to-income, employment status in one deterministic pass.</p>
       <ul class="uc-rules">
         <li>Credit score band × DTI ratio → tiered approval decision</li>
         <li>Adverse action notice generated from matched rule for FCRA</li>
@@ -818,7 +818,7 @@
     <div class="use-case-card">
       <span class="uc-tag finance">Financial</span>
       <div class="uc-title">Transaction Dispute Resolution</div>
-      <p class="uc-desc">Customer calls to dispute a transaction. Voice agent collects context; Manthan evaluates dispute eligibility rules — amount thresholds, merchant category, dispute window.</p>
+      <p class="uc-desc">Customer calls to dispute a transaction. Voice agent collects context; Manthan evaluates dispute eligibility rules amount thresholds, merchant category, dispute window.</p>
       <ul class="uc-rules">
         <li>Dispute window enforced by rule — not guessed by agent</li>
         <li>Chargeback eligibility tied to merchant category code signals</li>
@@ -946,7 +946,7 @@
   <div class="section-label" style="text-align:center;">Get Started</div>
   <div class="section-title">Ready to make your voice agent accountable?</div>
   <p class="section-body">
-    Start with a use case. Define your schema. Write your first rules. Manthan handles the rest — deterministically.
+    Start with a use case. Define your schema. Write your first rules. Manthan handles the rest deterministically.
   </p>
   <div class="hero-cta-row">
     <a href="#pipeline" class="btn-primary">Read the Docs</a>
